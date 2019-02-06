@@ -1,0 +1,16 @@
+@mixin font($f:Microsoft JhengHei)
+  font-family: $f
+@mixin size($w,$h:$w)
+  width: $w
+  height: $h
+@mixin center($x:center,$y:center)
+  display: flex
+  justify-content: $x
+  align-items: $y
+@mixin hover($s:.5s)
+  transition: $s
+  cursor: pointer
+  &:hover
+    transform: translateY(1px)
+    box-shodow: 5px 5px 15px rgba(0,0,0,.5)
+    text-decoration: none

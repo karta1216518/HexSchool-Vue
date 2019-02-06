@@ -1,0 +1,135 @@
+@import "./global.sass"
+
+.submitBtn
+  font-size: $fontSize
+  font-weight: 600
+  background-color: $cSelect
+  border: none
+  outline: none
+  position: relative
+  z-index: 2
+  +hover()
+  +size(100%,60px)
+  +center()
+  +font()
+.from
+  padding: 20px 40px 40px 40px
+  flex-direction: column
+  max-width: 540px
+  margin: 0 auto
+  +center()
+  .accountLink
+    width: 100%
+    display: flex
+    input[type="checkbox"]
+      margin-left: auto
+      +size(20px)
+  .row
+    flex-wrap: wrap
+    width: 100%
+    +center()
+    > select
+      flex: 1
+      padding: 0 20px
+      margin-bottom: 8px
+    > select:first-child
+      margin-right: 8px
+  .space
+    width: 4px
+  .fromItem
+    min-width: 120px
+    flex: 1
+    > input[type="text"],select
+      border: none
+      box-sizing: border-box
+      font-size: $fontSize
+      outline: none
+      +font()
+      +size(100%,40px)    
+    > input[type="text"]
+      padding: 0 20px
+    label
+      margin: 4px 0 
+      display: block
+  .typeToggleBtn,.paymentSelect
+    +size(100%,60px)
+    font-weight: 600
+  .csSelect
+    +size(100%,60px)
+  .postSelect
+    +size(100%,40px)
+  .typeToggleBtn,.paymentSelect,.csSelect,.postSelect,.paymentSelect
+    font-size: $fontSize
+    flex: 1
+    cursor: pointer
+    transition: .3s
+    border: 1px solid $cLite
+    box-sizing: border-box
+    +center()
+  .toggleArea
+    padding-top: 10px
+    transition: .5s
+  .postHandler:checked ~ .toggleRow > .postBtn,
+  .convenienceStoreHandler:checked ~ .toggleRow > .convenienceStoreBtn,
+  .onlineHandler:checked ~ .row > .onlinePayment,
+  .deliveryHandler:checked ~ .row > .deliveryPayment
+    background-color: $cLite !important
+    color: $cPri
+  .postHandler:checked ~ .postArea, 
+  .convenienceStoreHandler:checked ~ .convenienceStoreArea,
+  .onlineHandler:checked ~ .onlineArea,
+  .deliveryHandler:checked ~ .deliveryArea
+    +size(100%)
+    display: block
+
+  .convenienceStoreType:checked +.csSelect ,.postTime:checked +.postSelect
+      background-color: $cLite
+      color: $cPri
+      font-weight: 600
+  .note
+    margin: 8px 0
+    width: 100%
+.storeList
+  .storeListItem
+    display: flex
+    align-items: center
+    +size(100%,40px)
+  .storeListSelect
+    display: flex
+    width: 100%
+    +hover()
+    .storeName
+      padding: 0 10px
+    .selectStore
+      +size(20px)
+  .deleteBtn
+    +hover()
+    >.icon
+      +size(20px)
+.addStore
+  +font()
+  +size(150px,50px)
+  margin-top: 20px
+  letter-spacing: 4px
+  font-size: $fontSize 
+  border: 1px solid $cLite
+  border-radius: 8px  
+  background-color: $cPri
+  color: $cLite
+  transition: .3s
+  &:hover
+    background-color: $cLite
+    color: $cPri
+.onlineArea,.deliveryArea
+  padding-top: 20px
+
+
+
+.toggleHandler,
+.toggleArea,
+.convenienceStoreType,
+.postTime,
+.paymentType,
+.onlineArea,
+.deliveryArea
+  display: none
