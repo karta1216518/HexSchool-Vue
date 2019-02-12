@@ -90,6 +90,7 @@
     margin: 8px 0
     width: 100%
 .storeList
+  padding-top: 20px
   .storeListItem
     display: flex
     align-items: center
@@ -97,13 +98,13 @@
   .storeListSelect
     display: flex
     width: 100%
-    +hover()
     .storeName
       padding: 0 10px
     .selectStore
       +size(20px)
   .deleteBtn
-    +hover()
+    &:hover
+      transform: scale(1.1)
     >.icon
       +size(20px)
 .addStore

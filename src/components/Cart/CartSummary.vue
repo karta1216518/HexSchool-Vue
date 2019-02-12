@@ -5,27 +5,45 @@
       <div class="summaryInf">
         <div class="summaryItem">
           小計
-          <span class="summaryNum">NT$ 2,700</span>
+          <span class="summaryNum">NT${{totalPrice}}</span>
         </div>
         <div class="summaryItem">
-          運費
-          <span class="summaryNum">NT$ 300</span>
+          折扣
+          <span class="summaryNum">NT${{finalTotalPrice-totalPrice}}</span>
         </div>
         <div class="summaryTotal">
           總計
-          <span class="summaryNum">NT$ 3,000</span>
+          <span class="summaryNum">NT${{finalTotalPrice}}</span>
         </div>
       </div>
     </div>
-    <router-link to="/checkout" class="checkout">結帳</router-link>
+    <router-link
+      to="/checkout"
+      class="checkout"
+    >結帳</router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: "cartList",
+  name: "cartSummary",
   data() {
     return {};
+  },
+  computed: {
+    cartList() {
+      return this.$store.state.cartList;
+    },
+    totalPrice() {
+      return this.cartList.reduce((total, item) => {
+        return (total += item.total);
+      }, 0);
+    },
+    finalTotalPrice() {
+      return this.cartList.reduce((total, item) => {
+        return (total += item.final_total);
+      }, 0);
+    }
   }
 };
 </script>

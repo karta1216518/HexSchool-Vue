@@ -3,14 +3,27 @@
     <div class="mailBar">
       <div class="mailSlogan">訂閱你我的甜蜜郵件</div>
       <div class="mailInputBar">
-        <label for="inputBox" class="mailIcon">
-          <svg class="icon" aria-hidden="true">
+        <label
+          for="inputBox"
+          class="mailIcon"
+        >
+          <svg
+            class="icon"
+            aria-hidden="true"
+          >
             <use xlink:href="#icon-mail"></use>
           </svg>
         </label>
-        <input type="text" class="inputBox" id="inputBox">
+        <input
+          type="text"
+          class="inputBox"
+          id="inputBox"
+        >
         <button class="sendBtn">
-          <svg class="icon" aria-hidden="true">
+          <svg
+            class="icon"
+            aria-hidden="true"
+          >
             <use xlink:href="#icon-right"></use>
           </svg>
         </button>
@@ -20,7 +33,7 @@
       <div class="container">
         <div class="footerLinkbar">
           <img src="https://fakeimg.pl/250x100/">
-          <HoverIcon/>
+          <HoverIcon />
         </div>
         <div class="footerInf">
           <div class="content">07-1234-5678
@@ -80,7 +93,6 @@ export default {
       border: none
       outline: none
       font-size: $fontSize
-      padding: 0 20px
       max-width: 300px  
       box-sizing: border-box
       background: $cLite

@@ -8,11 +8,13 @@ import Checkout from './views/Checkout.vue'
 import Payment from '@/components/Checkout/FormPage/Payment.vue'
 import Personal from '@/components/Checkout/FormPage/Personal.vue'
 import Transport from '@/components/Checkout/FormPage/Transport.vue'
+import OrderCheck from '@/components/OrderCheck/OrderCheck.vue'
+import CompleteOrder from '@/components/CompleteOrder/CompleteOrder.vue'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -56,6 +58,21 @@ export default new Router({
       name: 'product',
       component: Product
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/orderCheck',
+      name: 'orderCheck',
+      component: OrderCheck
+    },
+    {
+      path: '/completeOrder',
+      name: 'completeOrder',
+      component: CompleteOrder
+    },
+    {
+      path: '*',
+      name: 'home',
+      component: Home
     }
   ]
 })

@@ -1,9 +1,12 @@
 <template>
   <div class="checkoutFrom">
     <div class="title">填寫資料</div>
-    <ProgressBar/>
-    <transition name="fade" mode="out-in">
-      <router-view/>
+    <ProgressBar />
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <router-view />
     </transition>
     <div class="backgroundBtn"></div>
   </div>
@@ -27,7 +30,8 @@ export default {
 @import "@/assets/sass/global.sass"
 
 .checkoutFrom
-  margin: 10px auto
+  margin: 0 auto
+  margin-bottom: 20px
   background-color: $cPri
   box-sizing: border-box
   color: #fff

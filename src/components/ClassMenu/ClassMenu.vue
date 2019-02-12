@@ -1,12 +1,13 @@
 <template>
   <div class="classMenu">
-    <div class="title">甜點類別</div>
+    <div class="title">商品類別</div>
     <ul>
       <li
         class="classMenuItem"
         v-for="item in classType"
         :key="item"
         :class="{ 'nowActive' : nowActive==item }"
+        @click="changeClass(item)"
       >
         {{item}}
         <span>(30)</span>
@@ -16,15 +17,26 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "classMenu",
   data() {
     return {
-      classType: ["所有甜點", "本日精選", "人氣推薦", "新品上市"],
-      nowActive: "所有甜點"
+      classType: ["所有產品", "測試分類", "人氣推薦", "新品上市"],
+      nowActive: "所有產品"
     };
   },
-  computed: {}
+  methods: {
+    changeClass(item) {
+      this.nowActive = item;
+      this.$emit("changeClass", item);
+      if (this.nowActive != "所有產品") {
+        this.$store.commit("SET_APITYPE", "all");
+        this.$store.dispatch("GET_PRODUCTLIST");
+      }
+    }
+  }
 };
 </script>
 

@@ -2,34 +2,59 @@
   <div class="cartList">
     <div class="title">您的購物車</div>
     <ul>
-      <li class="cartItem" v-for="item in 3">
+      <li
+        class="cartItem"
+        v-for="item in statisticsList"
+        :key="item.product_id"
+      >
         <div class="container">
-          <img src="https://fakeimg.pl/110x110/">
+          <div
+            class="img"
+            :style="{backgroundImage:'url('+item.product.image+')'}"
+          ></div>
           <div class="cartInf">
-            <div class="name">焦糖馬卡龍</div>
-            <div class="price">NT$ 450</div>
+            <div class="name">{{item.product.title}}</div>
+            <div class="price">{{'NT$'+item.product.origin_price*item.qty}}</div>
           </div>
           <div class="cartCount">
             <div class="countBar">
-              <div class="countBarItem countBtn">-</div>
-              <div class="countBarItem countNum">2</div>
-              <div class="countBarItem countBtn">+</div>
+              <div
+                class="countBarItem countBtn"
+                @click="changeCart(item,'remove')"
+              >-</div>
+              <div class="countBarItem countNum">{{item.qty}}</div>
+              <div
+                class="countBarItem countBtn"
+                @click="changeCart(item,'add')"
+              >+</div>
             </div>
-            <div class="total">NT$ 900</div>
+            <div class="total">{{'NT$'+item.final_total*item.qty}}</div>
           </div>
-          <div class="deleteBtn">
-            <svg class="icon" aria-hidden="true">
+          <div
+            class="deleteBtn"
+            @click="deleteCartItem(item)"
+          >
+            <svg
+              class="icon"
+              aria-hidden="true"
+            >
               <use xlink:href="#icon-delete"></use>
             </svg>
           </div>
         </div>
         <div class="cartCountS">
           <div class="countBar">
-            <div class="countBarItem countBtn">-</div>
-            <div class="countBarItem countNum">2</div>
-            <div class="countBarItem countBtn">+</div>
+            <div
+              class="countBarItem countBtn"
+              @click="changeCart(item,'remove')"
+            >-</div>
+            <div class="countBarItem countNum">{{item.qty}}</div>
+            <div
+              class="countBarItem countBtn"
+              @click="changeCart(item,'add')"
+            >+</div>
           </div>
-          <div class="total">NT$ 900</div>
+          <div class="total">{{'NT$'+item.final_total}}</div>
         </div>
       </li>
     </ul>
@@ -37,10 +62,66 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { mapActions } from "vuex";
+
 export default {
   name: "cartList",
   data() {
     return {};
+  },
+  computed: {
+    cartList() {
+      return this.$store.state.cartList;
+    },
+    statisticsList() {
+      let statisticsItem = {};
+      // 初始化
+      let idList = [];
+      let totalQty = [];
+      this.cartList.forEach(x => {
+        // 判斷是否已在statisticsItem物件中，用以計算idList與totalQty
+        statisticsItem[x.product_id]
+          ? (idList = [...statisticsItem[x.product_id].id, x.id]) &&
+            (totalQty = statisticsItem[x.product_id].qty + x.qty)
+          : (idList = [x.id]) && (totalQty = x.qty);
+
+        // 填入物件中
+        statisticsItem[x.product_id] = {
+          product: x.product,
+          product_id: x.product_id,
+          final_total: x.final_total,
+          total: x.total,
+          id: idList,
+          qty: totalQty
+        };
+        idList = [];
+      });
+      // 回傳完整物件用以v-for
+      return statisticsItem;
+    }
+  },
+  methods: {
+    deleteCartItem(item) {
+      this.$store.commit("CHANGE_LOADING", true);
+
+      item.id.forEach(x => {
+        this.$store.dispatch("DELETE_CARTITEM", { id: x });
+      });
+
+      this.$store.commit("CHANGE_LOADING", false);
+    },
+
+    changeCart(item, type) {
+      console.log("hit");
+      if (type === "add") {
+        this.$store.dispatch("SET_CART", { id: item.product_id });
+        console.log("add");
+      } else {
+        this.$store.dispatch("DELETE_CARTITEM", { id: item.id[0] });
+        console.log("remove");
+      }
+    }
   }
 };
 </script>
@@ -76,8 +157,9 @@ export default {
   border: 1px solid $cLite
 .deleteBtn
   min-width: 60px
-  +hover()
-
+  cursor: pointer
+  &:hover
+    transform: scale(1.1)
 .name,.price,.total
   margin: 10px 0
   text-align: center
@@ -92,7 +174,11 @@ export default {
   display: none
   padding: 10px
   border-bottom: 1px solid $cLite
-
+.img
+  +size(110px)
+  min-width: 110px
+  background-size: cover
+  background-position: center
 @media only screen and (max-width: $rwdL)
   .cartInf,.cartCount
     flex-direction: column

@@ -1,5 +1,8 @@
 <template>
-  <div class="imageWall" :class="{'imageWallReverse':reverse}">
+  <div
+    class="imageWall"
+    :class="{'imageWallReverse':reverse}"
+  >
     <div class="img">
       <img src="https://fakeimg.pl/460x460/">
     </div>
@@ -30,7 +33,7 @@ export default {
 .imageWall
   max-height: 420px 
   background: $cLite
-  margin: 40px auto 
+  margin: 60px auto 
   display: flex
   .img,.inf
     width: 50%

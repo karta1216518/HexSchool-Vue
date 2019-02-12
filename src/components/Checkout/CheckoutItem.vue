@@ -1,10 +1,10 @@
 <template>
   <div class="checkoutItem">
-    <img src="https://fakeimg.pl/110x110/">
+    <img src="https://fakeimg.pl/110x110/" />
     <div class="checkoutItemInf">
       <div class="container">
         <div class="name">焦糖馬卡龍</div>
-        <div class="count">數量:{{count}}</div>
+        <div class="count">數量:{{ count }}</div>
       </div>
       <div class="price">NT$ 900</div>
     </div>
@@ -13,12 +13,12 @@
 
 <script>
 export default {
-  name: "checkoutItem",
-  props: ["count"],
+  name: 'checkoutItem',
+  props: ['count'],
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

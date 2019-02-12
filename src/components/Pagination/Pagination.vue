@@ -1,19 +1,46 @@
 <template>
   <ul class="pagination">
-    <li class="pageItem">
-      <a class="pageLink" href="#">
-        <svg class="icon" aria-hidden="true">
+    <li
+      class="pageItem"
+      @click="movePage(-1)"
+    >
+      <a
+        class="pageLink"
+        href="#"
+      >
+        <svg
+          class="icon"
+          aria-hidden="true"
+        >
           <use xlink:href="#icon-left"></use>
         </svg>
       </a>
     </li>
-    <li class="pageItem" v-for="item in 3" :key="item" :class="{'nowActive':nowActive==item}">
-      <a class="pageLink" href="#">{{item}}</a>
+    <li
+      class="pageItem"
+      v-for="item in totalPages"
+      :key="item"
+    >
+      <a
+        href="#"
+        class="pageLink"
+        @click="changePage(item)"
+        :class="{'nowActive':nowActive==item}"
+      >{{item}}</a>
     </li>
 
-    <li class="pageItem">
-      <a class="pageLink" href="#">
-        <svg class="icon" aria-hidden="true">
+    <li
+      class="pageItem"
+      @click="movePage(1)"
+    >
+      <a
+        class="pageLink"
+        href="#"
+      >
+        <svg
+          class="icon"
+          aria-hidden="true"
+        >
           <use xlink:href="#icon-right"></use>
         </svg>
       </a>
@@ -22,12 +49,34 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapMutations } from "vuex";
+
 export default {
   name: "pagination",
   data() {
     return {
       nowActive: 1
     };
+  },
+  methods: {
+    changePage(page) {
+      this.nowActive = page;
+      this.$store.commit("SET_APITYPE", this.nowActive);
+      this.$store.dispatch("GET_PRODUCTLIST");
+    },
+    movePage(d) {
+      if (this.nowActive + d >= 1 && this.nowActive + d <= this.totalPages) {
+        this.nowActive += d;
+        this.$store.commit("SET_APITYPE", this.nowActive);
+        this.$store.dispatch("GET_PRODUCTLIST");
+      }
+    }
+  },
+  computed: {
+    totalPages() {
+      return this.$store.state.totalPages;
+    }
   }
 };
 </script>
@@ -39,13 +88,15 @@ export default {
 .pageLink
   +center()
   +size(48px)
-  +hover
+  +hover()
   border: 1px solid $cLite
   cursor: pointer
   >.icon
     width: 1em
-  &:hover
-    background: $cSelect
+
 .nowActive
   background: $cLite !important
+  cursor: auto
+  &:hover
+    box-shadow: none !important
 </style>

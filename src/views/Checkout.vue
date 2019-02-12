@@ -1,7 +1,7 @@
 <template>
   <div class="checkout">
-    <CheckoutSummary/>
-    <CheckoutForm/>
+    <CheckoutSummary />
+    <CheckoutForm />
   </div>
 </template>
 
@@ -22,11 +22,12 @@ export default {
 <style scoped lang="sass">
 @import "@/assets/sass/global.sass"
 .checkout
+  padding-top: 40px
   max-width: 1200px
   margin: 0 auto
   display: flex
   justify-content: center
-  
+
 @media only screen and (max-width: 768px)
   .checkout
     flex-direction: column

@@ -1,37 +1,68 @@
 <template>
   <div class="checkoutSummary">
-    <input type="checkbox" class="toggleSummary" id="summaryTitle" checked>
+    <input
+      type="checkbox"
+      class="toggleSummary"
+      id="summaryTitle"
+      checked
+    />
     <div class="checkedHandler">
-      <label for="summaryTitle" class="title">
+      <label
+        for="summaryTitle"
+        class="title"
+      >
         購物清單
         <span class="open toggleBtn">
-          <svg class="icon" aria-hidden="true">
+          <svg
+            class="icon"
+            aria-hidden="true"
+          >
             <use xlink:href="#icon-up"></use>
           </svg>
         </span>
         <span class="close toggleBtn">
-          <svg class="icon" aria-hidden="true">
+          <svg
+            class="icon"
+            aria-hidden="true"
+          >
             <use xlink:href="#icon-down"></use>
           </svg>
         </span>
       </label>
       <div class="toggleSummaryArea">
         <template v-for="item in 3">
-          <CheckoutItem :count="item" :key="item"/>
+          <CheckoutItem
+            :count="item"
+            :key="item"
+          />
         </template>
       </div>
     </div>
-    <input type="checkbox" class="toggleSummary" id="orderSummary" checked>
+    <input
+      type="checkbox"
+      class="toggleSummary"
+      id="orderSummary"
+      checked
+    />
     <div class="checkedHandler">
-      <label class="title" for="orderSummary">
+      <label
+        class="title"
+        for="orderSummary"
+      >
         訂單摘要
         <span class="open toggleBtn">
-          <svg class="icon" aria-hidden="true">
+          <svg
+            class="icon"
+            aria-hidden="true"
+          >
             <use xlink:href="#icon-up"></use>
           </svg>
         </span>
         <span class="close toggleBtn">
-          <svg class="icon" aria-hidden="true">
+          <svg
+            class="icon"
+            aria-hidden="true"
+          >
             <use xlink:href="#icon-down"></use>
           </svg>
         </span>
@@ -83,12 +114,12 @@ export default {
   &:checked + .checkedHandler>.title > .close
     opacity: 0
   &:checked + .checkedHandler>.toggleSummaryArea
-    opacity: 1 
-    height: auto 
+    opacity: 1
+    height: auto
 .toggleSummaryArea
   opacity: 0
   height: 0px
-  margin: 0 10px 10px 0
+  margin: 0 10px 20px 10px
   border: 2px solid $cLite
   overflow: hidden
   transition: .5s
@@ -99,7 +130,7 @@ export default {
   .title
     height: 60px
     background-color: $cLite
-    margin: 10px 10px 0 0 
+    margin: 0 10px 
     font-size: 1.2*$fontSize
     font-weight: 600
     color: $cPri
@@ -137,5 +168,4 @@ export default {
   .checkoutSummary
     margin: 0 auto
     max-width: none
-
 </style>

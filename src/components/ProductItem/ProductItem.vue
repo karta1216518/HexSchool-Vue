@@ -2,26 +2,40 @@
   <div class="productItem">
     <div class="label">本日精選</div>
     <div class="colletIcon">
-      <svg class="icon" aria-hidden="true">
+      <svg
+        class="icon"
+        aria-hidden="true"
+      >
         <use xlink:href="#icon-heart"></use>
       </svg>
     </div>
     <div class="productImg">
-      <img src="https://fakeimg.pl/300x315/">
+      <img :src="item.image">
     </div>
     <div class="productInf">
-      <div class="productName">焦糖馬卡龍</div>
-      <div class="productPrice">NT$ 450</div>
+      <div class="productName">{{item.title}}</div>
+      <div class="productPrice">{{'NT$'+item.price}}</div>
     </div>
-    <div class="addTotCart">加入購物車</div>
+    <div
+      class="addTotCart"
+      @click="addToCart(item)"
+    >加入購物車</div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "ProductItem",
   data() {
     return {};
+  },
+  props: ["item"],
+  methods: {
+    addToCart(item) {
+      this.$store.dispatch("SET_CART", item);
+    }
   }
 };
 </script>
@@ -35,6 +49,7 @@ export default {
   border: 1px solid $cLite
   margin: 20px 10px
   margin-top: 0
+  transition: .5s
   .label,.colletIcon
     position: absolute
     top: 0
@@ -49,13 +64,17 @@ export default {
   .colletIcon
     +size(60px)
     +center()
-    +hover()
     right: 0
     cursor: pointer
     &:hover
       color: $cSelect
   .productImg
-    +size(100%,315px)
+    +size(100%,300px)
+    +center()
+    max-width: 300px
+    overflow: hidden
+    img
+      width: 100%
   .productInf
     display: flex
     justify-content: space-around

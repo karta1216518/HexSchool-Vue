@@ -1,46 +1,69 @@
 <template>
-  <div class="banner" @mouseover="stopWorking" @mouseleave="startWorking">
-    <div v-for="(item,index) in bannerItem" :key="index">
+  <div
+    class="banner"
+    @mouseover="stopWorking"
+    @mouseleave="startWorking"
+  >
+    <div
+      v-for="(item, index) in bannerItem"
+      :key="index"
+    >
       <div
         class="backgroundImg"
         :class="{
-					'backgroundImgRight':item.moveDiretive,
-					'backgroundImgLeft':!item.moveDiretive,
-					'imgActive':bannerStatus.active==index
-				}"
-        :style="{ 'backgroundImage': `url(${imgUrl[index]})`}"
+          backgroundImgRight: item.moveDiretive,
+          backgroundImgLeft: !item.moveDiretive,
+          imgActive: bannerStatus.active == index
+        }"
+        :style="{ backgroundImage: `url(${imgUrl[index]})` }"
       >
         <div
           class="content"
-          :class="{'bannerFlowRight':item.moveDiretive,
-					'bannerFlowLeft':!item.moveDiretive,
-					'bannerFlowActive':bannerStatus.active==index}"
+          :class="{
+            bannerFlowRight: item.moveDiretive,
+            bannerFlowLeft: !item.moveDiretive,
+            bannerFlowActive: bannerStatus.active == index
+          }"
         >
-          <div class="logo" :style="{ 'backgroundImage': `url(${item.logoUrl})`}"></div>
-          <h2 class="text">{{item.text1}}</h2>
-          <h2 class="text">{{item.text2}}</h2>
-          <a href="#" class="linkBtn">{{item.btnText||'了解更多'}}</a>
+          <div
+            class="logo"
+            :style="{ backgroundImage: `url(${item.logoUrl})` }"
+          ></div>
+          <h2 class="text">{{ item.text1 }}</h2>
+          <h2 class="text">{{ item.text2 }}</h2>
+          <a
+            href="#"
+            class="linkBtn"
+          >{{ item.btnText || '了解更多' }}</a>
         </div>
       </div>
     </div>
 
-    <div class="leftSwitchBtn switchBtn" @click="changePagination(-1)"></div>
-    <div class="rightSwitchBtn switchBtn" @click="changePagination(1)"></div>
+    <div
+      class="leftSwitchBtn switchBtn"
+      @click="changePagination(-1)"
+    ></div>
+    <div
+      class="rightSwitchBtn switchBtn"
+      @click="changePagination(1)"
+    ></div>
     <div class="pagination">
       <div
         class="paginationBtn"
-        v-for="(btn,index) in bannerItem"
+        v-for="(btn, index) in bannerItem"
         :key="index"
         @click="goto(index)"
       >
         <div
           class="progressBar"
-          :class="{'progressActive' : bannerStatus.active==index&&bannerStatus.working}"
+          :class="{
+            progressActive: bannerStatus.active == index && bannerStatus.working
+          }"
         >
           <div
             class="progress"
-            :class="{'progressWorking':bannerStatus.working}"
-            v-if="bannerStatus.active==index"
+            :class="{ progressWorking: bannerStatus.working }"
+            v-if="bannerStatus.active == index"
           ></div>
         </div>
       </div>
@@ -63,8 +86,8 @@ export default {
           bgUrl: require("@/assets/img/banner1.jpg"),
           rwdUrl: require("@/assets/img/s_banner1.jpg"),
           logoUrl: require("@/assets/img/logo1.png"),
-          text1: "敲響戰鼓",
-          text2: "贊達拉的國王",
+          text1: "Vue-Cli",
+          text2: "建置大型環境",
           moveDiretive: false,
           btnText: ""
         },
@@ -72,26 +95,26 @@ export default {
           bgUrl: require("@/assets/img/banner2.jpg"),
           rwdUrl: require("@/assets/img/s_banner2.jpg"),
           logoUrl: require("@/assets/img/logo2.png"),
-          text1: "創造世界",
-          text2: "瞭解暴雪的工作機會",
+          text1: "使用Vuex",
+          text2: "集中管理數據",
           moveDiretive: true,
-          btnText: "馬上看看"
+          btnText: ""
         },
         {
           bgUrl: require("@/assets/img/banner3.jpg"),
           rwdUrl: require("@/assets/img/s_banner3.jpg"),
           logoUrl: require("@/assets/img/logo3.png"),
-          text1: "暴雪 BATTLE.NET 行動應用程式",
-          text2: "",
+          text1: "Sass手刻RWD",
+          text2: "BEM命名規範",
           moveDiretive: false,
-          btnText: ""
+          btnText: "馬上看看"
         },
         {
           bgUrl: require("@/assets/img/banner4.jpg"),
           rwdUrl: require("@/assets/img/s_banner4.jpg"),
           logoUrl: require("@/assets/img/logo4.png"),
-          text1: "和好友聊天",
-          text2: "不會遺漏你傳的內容",
+          text1: "Vue-router",
+          text2: "SPA瀏覽體驗",
           moveDiretive: true,
           btnText: ""
         }
@@ -183,7 +206,7 @@ export default {
 		position: relative
 
 .banner
-	+size(100%,500px)
+	+size(100%,560px)
 	+center()
 	overflow: hidden
 	position: relative
@@ -200,14 +223,16 @@ export default {
 		opacity: 1
 		background-position: center !important
 	.backgroundImgRight
-		background-position: right 
+		background-position: right
 	.backgroundImgLeft
-		background-position: left 
+		background-position: left
 	&:hover
 		.switchBtn
 			opacity: 1
 @media only screen and (max-width: $rwdM)
-	.backgroundImg
+  .banner
+    height: 500px
+  .backgroundImg
 		background-repeat: no-repeat
 		background-size: auto 100% !important
 
@@ -224,14 +249,14 @@ export default {
 		+size(100%,200px)
 		background-size: contain
 		background-repeat: no-repeat
-		+transitionFlow(.2s)	
+		+transitionFlow(.2s)
 	.text
 		font-size: 50px
 		font-family: Microsoft JhengHei
 		margin: 0
 		display: block
 		text-align: left
-		+transitionFlow(.5s)	
+		+transitionFlow(.5s)
 	.linkBtn
     text-decoration: none
     background: red
@@ -242,10 +267,10 @@ export default {
     +size(160px,50px)
     +center()
     +font()
-    +transitionFlow(.8s)	
+    +transitionFlow(.8s)
 .bannerFlowRight
 	.logo,.text,.linkBtn
-		left: -60px 
+		left: -60px
 .bannerFlowLeft
 	.logo,.text,.linkBtn
 		left: 60px
@@ -267,7 +292,7 @@ export default {
 			font-size: 32px
 	.bannerFlowRight
 		.logo,.text,.linkBtn
-			left: -30px 
+			left: -30px
 	.bannerFlowLeft
 		.logo,.text,.linkBtn
 			left: 30px
@@ -286,7 +311,7 @@ export default {
 		left: 0
 	&.rightSwitchBtn
 		right: 0
-  
+
 .pagination
 	position: absolute
 	bottom: 0
@@ -304,7 +329,7 @@ export default {
 			height: 8px
 			.progress
 				background: red
-				height: 100%        
+				height: 100%
         transition: 1s
 			.progressWorking
 				animation: progressWorking 5s linear

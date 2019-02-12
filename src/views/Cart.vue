@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
-    <CartList/>
-    <CartSummary/>
+    <CartList />
+    <CartSummary />
   </div>
 </template>
 
@@ -9,12 +9,17 @@
 // @ is an alias to /src
 import CartList from "@/components/Cart/CartList.vue";
 import CartSummary from "@/components/Cart/CartSummary.vue";
+import { mapActions } from "vuex";
 
 export default {
-  name: "login",
+  name: "cart",
   components: {
     CartList,
     CartSummary
+  },
+
+  created() {
+    this.$store.dispatch("GET_CARTLIST");
   }
 };
 </script>

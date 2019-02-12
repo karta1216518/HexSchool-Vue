@@ -2,31 +2,44 @@
   <div class="navbar">
     <div class="container">
       <div class="hamburger">
-        <label class="hamburgerBtn" for="hamburgerHandler">
-          <svg class="icon" aria-hidden="true">
+        <label
+          class="hamburgerBtn"
+          for="hamburgerHandler"
+        >
+          <svg
+            class="icon"
+            aria-hidden="true"
+          >
             <use xlink:href="#icon-hamburger"></use>
           </svg>
         </label>
-        <input type="checkbox" id="hamburgerHandler" class="hamburgerHandler">
+        <input
+          type="checkbox"
+          id="hamburgerHandler"
+          class="hamburgerHandler"
+        />
         <div class="hamburgerList">
-          <router-link to="/">首頁</router-link>
-          <router-link to="/product">商品</router-link>
-          <router-link to="/login">登入</router-link>
+          <router-link :to="{ name: 'home' }">首頁</router-link>
+          <router-link :to="{ name: 'product' }">商品</router-link>
+          <router-link :to="{ name: 'login' }">登入</router-link>
         </div>
       </div>
-      <router-link to="/">
+      <router-link :to="{ name: 'home' }">
         <div class="navlogo">
-          <img src="https://fakeimg.pl/200x80/">
+          <img src="https://fakeimg.pl/200x80/" />
         </div>
       </router-link>
       <div class="navBtnBar">
-        <router-link to="/">首頁</router-link>
-        <router-link to="/product">商品</router-link>
-        <router-link to="/login">登入</router-link>
+        <router-link :to="{ name: 'home' }">首頁</router-link>
+        <router-link :to="{ name: 'product' }">商品</router-link>
+        <router-link :to="{ name: 'login' }">登入</router-link>
       </div>
-      <router-link to="/cart">
+      <router-link :to="{ name: 'cart' }">
         <div class="cart">
-          <svg class="icon" aria-hidden="true">
+          <svg
+            class="icon"
+            aria-hidden="true"
+          >
             <use xlink:href="#icon-cart4"></use>
           </svg>
         </div>
@@ -50,6 +63,7 @@ export default {
 .navbar
   width: 100%
   font-size: $fontSize
+  box-shadow: -2px 2px 2px rgba(#000,.3)
   +center()
 .container
   max-width: 1200px
@@ -64,14 +78,14 @@ export default {
   +center()
   >a
     +size(100px,80px)
-    &:hover
-      background: $cSelect
+
 a
   text-decoration: none
   font-weight: 600
   +center()
   +hover()
-
+  &:hover
+    background: $cLite
 
 .cart
   +size(120px,80px)
