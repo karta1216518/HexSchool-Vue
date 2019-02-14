@@ -88,4 +88,6 @@ li
   list-style: none
 a
   text-decoration: none
+  &:visited
+    color: $cPri
 </style>

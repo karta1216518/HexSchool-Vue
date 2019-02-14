@@ -26,7 +26,7 @@
       </div>
       <router-link :to="{ name: 'home' }">
         <div class="navlogo">
-          <img src="https://fakeimg.pl/200x80/" />
+          <Logo />
         </div>
       </router-link>
       <div class="navBtnBar">
@@ -49,11 +49,14 @@
 </template>
 
 <script>
+import Logo from "@/components/Logo/Logo.vue";
+
 export default {
   name: "NavBar",
   data() {
     return {};
-  }
+  },
+  components: { Logo }
 };
 </script>
 
@@ -84,8 +87,7 @@ a
   font-weight: 600
   +center()
   +hover()
-  &:hover
-    background: $cLite
+
 
 .cart
   +size(120px,80px)

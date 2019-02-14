@@ -49,9 +49,9 @@ export default {
 @import "@/assets/sass/global.sass"
 
 .loginArea
-  min-height: 600px
+  min-height: 720px
   margin: 0 auto
-  background-image: url('../../assets/img/s_banner2.jpg')
+  background-image: url('../../assets/img/login.jpg')
   background-size: cover
   +center()
   .login

@@ -17,24 +17,27 @@
         }"
         :style="{ backgroundImage: `url(${imgUrl[index]})` }"
       >
-        <div
-          class="content"
-          :class="{
+        <div class="container">
+
+          <div
+            class="content"
+            :class="{
             bannerFlowRight: item.moveDiretive,
             bannerFlowLeft: !item.moveDiretive,
             bannerFlowActive: bannerStatus.active == index
           }"
-        >
-          <div
-            class="logo"
-            :style="{ backgroundImage: `url(${item.logoUrl})` }"
-          ></div>
-          <h2 class="text">{{ item.text1 }}</h2>
-          <h2 class="text">{{ item.text2 }}</h2>
-          <a
-            href="#"
-            class="linkBtn"
-          >{{ item.btnText || '了解更多' }}</a>
+          >
+            <div
+              class="logo"
+              :style="{ backgroundImage: `url(${item.logoUrl})` }"
+            ></div>
+            <h2 class="text">{{ item.text1 }}</h2>
+            <h2 class="text">{{ item.text2 }}</h2>
+            <a
+              href="#"
+              class="linkBtn"
+            >{{ item.btnText || '馬上錄取' }}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -98,7 +101,7 @@ export default {
           text1: "使用Vuex",
           text2: "集中管理數據",
           moveDiretive: true,
-          btnText: ""
+          btnText: "了解更多"
         },
         {
           bgUrl: require("@/assets/img/banner3.jpg"),
@@ -107,7 +110,16 @@ export default {
           text1: "Sass手刻RWD",
           text2: "BEM命名規範",
           moveDiretive: false,
-          btnText: "馬上看看"
+          btnText: ""
+        },
+        {
+          bgUrl: require("@/assets/img/banner4.jpg"),
+          rwdUrl: require("@/assets/img/s_banner4.jpg"),
+          logoUrl: require("@/assets/img/logo4.png"),
+          text1: "Vue-router",
+          text2: "SPA瀏覽體驗",
+          moveDiretive: true,
+          btnText: ""
         },
         {
           bgUrl: require("@/assets/img/banner4.jpg"),
@@ -184,7 +196,6 @@ export default {
     });
     vm.startWorking();
     window.onresize = () => {
-      // 定义窗口大小变更通知事件
       vm.bannerStatus.screenWidth = window.innerWidth;
     };
   },
@@ -204,6 +215,10 @@ export default {
 		transition: 1s cubic-bezier(0.03, 0.85, 0.6, 1)
 		transition-delay: $d
 		position: relative
+    
+.container    
+  max-width: 1200px
+  margin: 0 auto
 
 .banner
 	+size(100%,560px)
@@ -287,7 +302,7 @@ export default {
 			position: relative
 		.logo
 			background-position: center
-			height: 150px
+			height: 200px
 		.text
 			font-size: 32px
 	.bannerFlowRight

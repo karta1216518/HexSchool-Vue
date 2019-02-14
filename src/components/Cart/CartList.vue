@@ -3,6 +3,10 @@
     <div class="title">您的購物車</div>
     <ul>
       <li
+        class="cartNoItem"
+        v-if="cartList.length==0"
+      >您的購物車沒有物品!</li>
+      <li
         class="cartItem"
         v-for="item in statisticsList"
         :key="item.product_id"
@@ -179,6 +183,11 @@ export default {
   min-width: 110px
   background-size: cover
   background-position: center
+.cartNoItem
+  +size(100%,300px)
+  +center()
+  font-size: $fontSize
+  color: $cPri
 @media only screen and (max-width: $rwdL)
   .cartInf,.cartCount
     flex-direction: column
