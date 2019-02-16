@@ -64,10 +64,12 @@ export default {
 @import "@/assets/sass/global.sass"
 
 .navbar
+  +center()
   width: 100%
   font-size: $fontSize
   box-shadow: -2px 2px 2px rgba(#000,.3)
-  +center()
+  z-index: 999
+  background: $cNavBar
 .container
   max-width: 1200px
   +center(space-between)
@@ -105,14 +107,13 @@ a
   cursor: pointer
 
 @media only screen and (max-width: $rwdM)
-  .navlogo
-    width: 120px
   .cart
     width: 80px
   .navBtnBar
     display: none
   .hamburger
     height: 80px
+    margin-left: 20px
     position: relative
     +center()
   .hamburgerHandler:checked +.hamburgerList

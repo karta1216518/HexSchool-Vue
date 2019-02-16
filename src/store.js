@@ -11,16 +11,49 @@ export default new Vuex.Store({
   state: {
     apiUrl: 'https://vue-course-api.hexschool.io/api/karta12165188/',
     productList: [],
+    productDetail: [],
     cartList: [],
     totalPages: {},
     apiType: '1',
     loading: false
   },
+  getters: {
+    statisticsList (state) {
+      let statisticsItem = {}
+      // 初始化
+      let idList = []
+      let totalQty = []
+      state.cartList.forEach(x => {
+        // 判斷是否已在statisticsItem物件中，用以計算idList與totalQty
+        statisticsItem[x.product_id]
+          ? (idList = [...statisticsItem[x.product_id].id, x.id]) &&
+            (totalQty = statisticsItem[x.product_id].qty + x.qty)
+          : (idList = [x.id]) && (totalQty = x.qty)
+
+        // 填入物件中
+        statisticsItem[x.product_id] = {
+          product: x.product,
+          product_id: x.product_id,
+          final_total: x.final_total,
+          total: x.total,
+          id: idList,
+          qty: totalQty
+        }
+        idList = []
+      })
+      // 回傳完整物件用以v-for
+      return statisticsItem
+    }
+  },
   mutations: {
     // 商品
-    SET_DATA (state, data) {
+    SET_DATALIST (state, data) {
       state.productList = data.products
       if (data.pagination) state.totalPages = data.pagination.total_pages
+      console.log(data)
+    },
+    SET_DATA (state, data) {
+      state.productDetail = data.product
       console.log(data)
     },
     SET_APITYPE (state, type) {
@@ -48,6 +81,15 @@ export default new Vuex.Store({
           : this.state.apiUrl + 'products/?page=' + this.state.apiType
 
       axios.get(products).then(function (response) {
+        context.commit('SET_DATALIST', response.data)
+        context.commit('CHANGE_LOADING', false)
+      })
+    },
+    GET_PRODUCT (context, id) {
+      context.commit('CHANGE_LOADING', true)
+
+      let getItemApi = this.state.apiUrl + 'product/' + id
+      axios.get(getItemApi).then(function (response) {
         context.commit('SET_DATA', response.data)
         context.commit('CHANGE_LOADING', false)
       })
@@ -64,22 +106,28 @@ export default new Vuex.Store({
         context.commit('CHANGE_LOADING', false)
       })
     },
-    SET_CART (context, item) {
-      context.commit('CHANGE_LOADING', true)
+    SET_CART (context, { item, qty }) {
+      return new Promise(resolve => {
+        context.commit('CHANGE_LOADING', true)
 
-      let setCartApi = this.state.apiUrl + 'cart'
-      let cartItem = { product_id: item.id, qty: 1 }
-      axios.post(setCartApi, { data: cartItem }).then(function (response) {
-        context.dispatch('GET_CARTLIST', response.data)
-        console.log('加入購物車', response.data)
-        context.commit('CHANGE_LOADING', false)
+        let setCartApi = this.state.apiUrl + 'cart'
+        let cartItem = { product_id: item.id, qty }
+        axios.post(setCartApi, { data: cartItem }).then(function (response) {
+          context.dispatch('GET_CARTLIST', response.data)
+          console.log('加入購物車', response.data)
+          context.commit('CHANGE_LOADING', false)
+          resolve('已加入物品')
+        })
       })
     },
     DELETE_CARTITEM (context, item) {
-      let deleteApi = `${this.state.apiUrl}cart/${item.id}`
-      axios.delete(deleteApi).then(function (response) {
-        context.dispatch('GET_CARTLIST', response.data)
-        console.log('刪除購物車', response.data)
+      return new Promise(resolve => {
+        let deleteApi = `${this.state.apiUrl}cart/${item.id}`
+        axios.delete(deleteApi).then(function (response) {
+          context.dispatch('GET_CARTLIST', response.data)
+          console.log('刪除購物車資料', response.data)
+        })
+        resolve('已刪除物品')
       })
     }
   }

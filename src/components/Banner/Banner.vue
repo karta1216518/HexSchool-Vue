@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="banner"
-    @mouseover="stopWorking"
-    @mouseleave="startWorking"
-  >
+  <div class="banner">
     <div
       v-for="(item, index) in bannerItem"
       :key="index"
@@ -31,8 +27,8 @@
               class="logo"
               :style="{ backgroundImage: `url(${item.logoUrl})` }"
             ></div>
-            <h2 class="text">{{ item.text1 }}</h2>
-            <h2 class="text">{{ item.text2 }}</h2>
+            <h2 class="text textTitle">{{ item.text1 }}</h2>
+            <h2 class="text textContent">{{ item.text2 }}</h2>
             <a
               href="#"
               class="linkBtn"
@@ -55,7 +51,7 @@
         class="paginationBtn"
         v-for="(btn, index) in bannerItem"
         :key="index"
-        @click="goto(index)"
+        @click="moveTo(index)"
       >
         <div
           class="progressBar"
@@ -108,17 +104,8 @@ export default {
           rwdUrl: require("@/assets/img/s_banner3.jpg"),
           logoUrl: require("@/assets/img/logo3.png"),
           text1: "Sass手刻RWD",
-          text2: "BEM命名規範",
+          text2: "Animation動畫效果",
           moveDiretive: false,
-          btnText: ""
-        },
-        {
-          bgUrl: require("@/assets/img/banner4.jpg"),
-          rwdUrl: require("@/assets/img/s_banner4.jpg"),
-          logoUrl: require("@/assets/img/logo4.png"),
-          text1: "Vue-router",
-          text2: "SPA瀏覽體驗",
-          moveDiretive: true,
           btnText: ""
         },
         {
@@ -170,7 +157,7 @@ export default {
       }
       this.stopWorking();
     },
-    goto(p) {
+    moveTo(p) {
       this.bannerStatus.active = p;
       this.stopWorking();
     },
@@ -179,6 +166,8 @@ export default {
       this.bannerStatus.working = false;
     },
     startWorking() {
+      // init
+      this.stopWorking();
       let vm = this;
       this.bannerStatus.interval = setInterval(() => {
         vm.change();
@@ -218,16 +207,20 @@ export default {
     
 .container    
   max-width: 1200px
+  height: 100%
   margin: 0 auto
-
+  .content
+    display: flex
+    flex-direction: column
+    justify-content: center
 .banner
-	+size(100%,560px)
+	+size(100%, calc(100vh - 80px) )
 	+center()
 	overflow: hidden
 	position: relative
 	.backgroundImg
 		+size(100%)
-		background-size: 110%
+		background-size: cover
 		background-position: center
 		position: absolute
 		left: 0
@@ -244,6 +237,9 @@ export default {
 	&:hover
 		.switchBtn
 			opacity: 1
+@media only screen and (max-width: $rwdL)
+  .banner
+    height: 720px
 @media only screen and (max-width: $rwdM)
   .banner
     height: 500px
@@ -271,13 +267,14 @@ export default {
 		margin: 0
 		display: block
 		text-align: left
+    text-shadow: 4px 4px 10px #FFF
 		+transitionFlow(.5s)
 	.linkBtn
     text-decoration: none
     background: red
     color: white
     font-size: 20px
-    margin: 10px
+    margin: 20px
     font-weight: 600
     +size(160px,50px)
     +center()
@@ -330,7 +327,7 @@ export default {
 .pagination
 	position: absolute
 	bottom: 0
-	height: 30px
+	height: 40px
 	z-index: 1
 	display: flex
 	.paginationBtn
@@ -341,7 +338,7 @@ export default {
 			background: rgba(red,.5) !important
 		.progressBar
 			background: rgba(255,255,255,.5)
-			height: 8px
+			height: 10px
 			.progress
 				background: red
 				height: 100%

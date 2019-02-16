@@ -1,5 +1,6 @@
 <template>
   <div class="cartList">
+
     <div class="title">您的購物車</div>
     <ul>
       <li
@@ -66,8 +67,9 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { mapActions } from "vuex";
+// import { mapState } from "vuex";
+// import { mapActions } from "vuex";
+import { MessageBox } from "element-ui";
 
 export default {
   name: "cartList",
@@ -79,51 +81,61 @@ export default {
       return this.$store.state.cartList;
     },
     statisticsList() {
-      let statisticsItem = {};
-      // 初始化
-      let idList = [];
-      let totalQty = [];
-      this.cartList.forEach(x => {
-        // 判斷是否已在statisticsItem物件中，用以計算idList與totalQty
-        statisticsItem[x.product_id]
-          ? (idList = [...statisticsItem[x.product_id].id, x.id]) &&
-            (totalQty = statisticsItem[x.product_id].qty + x.qty)
-          : (idList = [x.id]) && (totalQty = x.qty);
-
-        // 填入物件中
-        statisticsItem[x.product_id] = {
-          product: x.product,
-          product_id: x.product_id,
-          final_total: x.final_total,
-          total: x.total,
-          id: idList,
-          qty: totalQty
-        };
-        idList = [];
-      });
-      // 回傳完整物件用以v-for
-      return statisticsItem;
+      return this.$store.getters.statisticsList;
     }
   },
   methods: {
     deleteCartItem(item) {
-      this.$store.commit("CHANGE_LOADING", true);
+      MessageBox.confirm("是否要刪除購物車商品", "提示", {
+        cancelButtonText: "取消",
+        confirmButtonText: "確定",
+        type: "warning"
+      })
+        .then(() => {
+          this.$store.commit("CHANGE_LOADING", true);
 
-      item.id.forEach(x => {
-        this.$store.dispatch("DELETE_CARTITEM", { id: x });
-      });
+          item.id.forEach(x => {
+            this.$store.dispatch("DELETE_CARTITEM", { id: x });
+          });
 
-      this.$store.commit("CHANGE_LOADING", false);
+          this.$store.commit("CHANGE_LOADING", false);
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
     },
-
+    // 因無調整購物車數量對應的API，此部分採取前端自幹
     changeCart(item, type) {
-      console.log("hit");
-      if (type === "add") {
-        this.$store.dispatch("SET_CART", { id: item.product_id });
-        console.log("add");
+      // 判斷動作是否為增加數量，若是則直接增加數量一，再透過computed顯示成同一欄位
+      // 若動作為減少數量，則選取cartList中同商品的任意一筆，判斷其數量做刪減動作
+      if (type === "remove") {
+        let changeItem = this.cartList.find(x => {
+          return x.product_id === item.product_id;
+        });
+        console.log(changeItem);
+        if (changeItem.qty > 1) {
+          this.$store.dispatch("DELETE_CARTITEM", changeItem);
+          // 因為傳入的item來源是computed後的項目，其id為Array不符合action的傳入參數故要調整
+          this.$store.dispatch("SET_CART", {
+            item: { id: changeItem.product_id },
+            qty: changeItem.qty - 1
+          });
+        } else {
+          this.$store.dispatch("DELETE_CARTITEM", changeItem);
+        }
       } else {
-        this.$store.dispatch("DELETE_CARTITEM", { id: item.id[0] });
-        console.log("remove");
+        // 同上調整id
+        this.$store.dispatch("SET_CART", {
+          item: { id: item.product_id },
+          qty: 1
+        });
       }
     }
   }

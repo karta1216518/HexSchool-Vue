@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="mailBar">
-      <div class="mailSlogan">訂閱你我的甜蜜郵件</div>
+      <div class="mailSlogan">訂閱 Karta's file</div>
       <div class="mailInputBar">
         <label
           for="inputBox"
@@ -18,6 +18,7 @@
           type="text"
           class="inputBox"
           id="inputBox"
+          placeholder="輸入電子信箱"
         >
         <button class="sendBtn">
           <svg
@@ -32,16 +33,18 @@
     <div class="footerInfArea">
       <div class="container">
         <div class="footerLinkbar">
-          <img src="https://fakeimg.pl/250x100/">
+          <router-link :to="{name: 'home'}">
+            <Logo />
+          </router-link>
           <HoverIcon />
         </div>
         <div class="footerInf">
-          <div class="content">07-1234-5678
-            <br>sweetaste@email.com 800
-            <br>高雄市新興區幸福路 520 號
+          <div class="content">0910-966-000
+            <br>karta12165188@gmail.com
+            <br>新北市板橋區
             <br>
           </div>
-          <div class="copyright">© 2018 Sweetaste* All Rights Reserved</div>
+          <div class="copyright">©本頁面僅供練習使用，圖片版權來自各原作者 / 圖片來源: Unsplash </div>
         </div>
       </div>
     </div>
@@ -49,10 +52,12 @@
 </template>
 
 <script>
+import Logo from "@/components/Logo/Logo.vue";
 import HoverIcon from "@/components/Footer/HoverIcon.vue";
+
 export default {
   name: "Footer",
-  components: { HoverIcon },
+  components: { HoverIcon, Logo },
   data() {
     return {};
   }
@@ -97,6 +102,7 @@ export default {
       box-sizing: border-box
       background: $cLite
       height: 60px
+      +font()
     .sendBtn
       background: $cSelect
       border: none
@@ -104,7 +110,6 @@ export default {
       cursor: pointer
       +hover()
 .footerInfArea
-  background: $cLite
   .container
     max-width: 800px
     margin: 0 auto

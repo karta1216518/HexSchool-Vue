@@ -1,21 +1,24 @@
 <template>
   <div class="productItem">
-    <div class="label">本日精選</div>
-    <div class="colletIcon">
-      <svg
-        class="icon"
-        aria-hidden="true"
-      >
-        <use xlink:href="#icon-heart"></use>
-      </svg>
-    </div>
-    <div class="productImg">
-      <img :src="item.image">
-    </div>
-    <div class="productInf">
-      <div class="productName">{{item.title}}</div>
-      <div class="productPrice">{{'NT$'+item.price}}</div>
-    </div>
+    <router-link :to="{name:'productDetailPage' ,params: {id:item.id}}">
+      <div class="label">{{item.category}}</div>
+      <div class="colletIcon">
+        <svg
+          class="icon"
+          aria-hidden="true"
+        >
+          <use xlink:href="#icon-heart"></use>
+        </svg>
+      </div>
+      <div class="productImg">
+        <img :src="item.image">
+      </div>
+      <div class="productInf">
+        <div class="productName">{{item.title}}</div>
+        <div class="productPrice">{{'NT$'+item.price}}</div>
+      </div>
+    </router-link>
+
     <div
       class="addTotCart"
       @click="addToCart(item)"
@@ -24,8 +27,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 export default {
   name: "ProductItem",
   data() {
@@ -34,7 +35,9 @@ export default {
   props: ["item"],
   methods: {
     addToCart(item) {
-      this.$store.dispatch("SET_CART", item);
+      this.$store.dispatch("SET_CART", { item, qty: 1 }).then(() => {
+        this.$message.success("成功加入購物車");
+      });
     }
   }
 };
@@ -67,7 +70,7 @@ export default {
     right: 0
     cursor: pointer
     &:hover
-      color: $cSelect
+      color: $cWarm
   .productImg
     +size(100%,300px)
     +center()

@@ -1,24 +1,27 @@
 <template>
   <div class="checkoutItem">
-    <img src="https://fakeimg.pl/110x110/" />
+    <div
+      class="img"
+      :style="{backgroundImage:'url('+imgUrl+')'}"
+    ></div>
     <div class="checkoutItemInf">
       <div class="container">
-        <div class="name">焦糖馬卡龍</div>
+        <div class="name">{{name}}</div>
         <div class="count">數量:{{ count }}</div>
       </div>
-      <div class="price">NT$ 900</div>
+      <div class="price">{{`NT$${price}`}}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'checkoutItem',
-  props: ['count'],
+  name: "checkoutItem",
+  props: ["count", "name", "price", "imgUrl"],
   data() {
-    return {}
+    return {};
   }
-}
+};
 </script>
 
 <style scoped lang="sass">
@@ -29,6 +32,11 @@ export default {
   box-sizing: border-box
   display: flex
   border-top: 2px solid $cLite
+  .img
+    +size(110px)
+    min-width: 110px
+    background-size: cover
+    background-position: center
   .checkoutItemInf,.container
     display: flex
     width: 100%

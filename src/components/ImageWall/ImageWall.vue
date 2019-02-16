@@ -1,18 +1,19 @@
 <template>
-  <div
-    class="imageWall"
-    :class="{'imageWallReverse':reverse}"
-  >
-    <div class="img">
-      <img src="https://fakeimg.pl/460x460/">
-    </div>
-    <div class="inf">
-      <p>
-        青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。
-        是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
-        是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
-        樵江渚上，古今多少事，都付笑談中。
-      </p>
+  <div class="imageWall">
+    <div
+      class="container"
+      :class="{'imageWallReverse':index%2==0}"
+    >
+      <div
+        class="img"
+        :style="{backgroundImage:'url('+item.imgUrl+')'}"
+      >
+      </div>
+      <div class="info">
+        <p>
+          {{item.content}}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -20,7 +21,7 @@
 <script>
 export default {
   name: "ImageWell",
-  props: ["reverse"],
+  props: ["item", "index"],
   data() {
     return {};
   }
@@ -31,14 +32,22 @@ export default {
 @import "@/assets/sass/global.sass"
 
 .imageWall
-  max-height: 420px 
+  height: 460px 
   background: $cLite
-  margin: 60px auto 
-  display: flex
-  .img,.inf
+  margin-bottom: 400px
+  .container
+    display: flex
+    max-width: 1200px
+    height: 100%
+    margin: 0 auto
+  .info
     width: 50%
+  .img
     +center()
-  .inf
+    width: 50%
+    background-position: center
+    background-size: cover
+  .info
     padding: 70px
     box-sizing: border-box
     p
@@ -47,16 +56,20 @@ export default {
   flex-direction: row-reverse
 @media only screen and (max-width: $rwdM)
   .imageWall
-    flex-direction: column
-    max-height: none
-    align-items: center
-    .img,.inf
-      +size(100%,250px)
-      +center()
-      overflow: hidden
-    .inf
-      padding: 30px
-      max-width: 500px
-      p
-        writing-mode: horizontal-tb 
+    margin-bottom: 0
+    .container
+      flex-direction: column
+      max-height: none
+      align-items: center
+      margin: 40px auto
+
+      .img,.info
+        +size(100%,250px)
+        +center()
+        overflow: hidden
+      .info
+        padding: 30px
+        max-width: 500px
+        p
+          writing-mode: horizontal-tb 
 </style>

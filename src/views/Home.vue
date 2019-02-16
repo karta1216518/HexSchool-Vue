@@ -1,16 +1,26 @@
 <template>
   <div class="home">
     <Banner />
-    <ImageWall />
-    <ImageWall :reverse="true" />
-    <div class="product">
-      <template v-for="item in productList.slice(0, 3)">
-        <ProductItem
-          :item="item"
-          :key="item.id"
-        />
-      </template>
+    <div class="section">精選商品</div>
+    <div class="productArea">
+      <div class="
+        product">
+        <template v-for="item in productList.slice(0, 3)">
+          <ProductItem
+            :item="item"
+            :key="item.id"
+          />
+        </template>
+      </div>
     </div>
+    <div class="section">關於本站</div>
+    <template v-for="(item,index) in wallContent">
+      <ImageWall
+        :item="item"
+        :index="index"
+        :key="index"
+      />
+    </template>
   </div>
 </template>
 
@@ -18,13 +28,33 @@
 // @ is an alias to /src
 import Banner from "@/components/Banner/Banner.vue";
 import ImageWall from "@/components/ImageWall/ImageWall.vue";
-import { mapState } from "vuex";
 
 export default {
   name: "home",
   components: {
     Banner,
     ImageWall
+  },
+  data() {
+    return {
+      wallContent: [
+        {
+          imgUrl: require("@/assets/img/wall1.jpg"),
+          title: "Promise",
+          content: "此條目為介紹 Promise 建構式。"
+        },
+        {
+          imgUrl: require("@/assets/img/wall2.jpg"),
+          title: "Promise",
+          content: "此條目為介紹 Promise 建構式。:"
+        },
+        {
+          imgUrl: require("@/assets/img/wall3.jpg"),
+          title: "Promise",
+          content: "此條目為介紹 Promise 建構式。:"
+        }
+      ]
+    };
   },
   computed: {
     productList() {
@@ -35,6 +65,22 @@ export default {
 </script>
 
 <style scoped lang="sass">
+.home
+  background-image: url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=655&q=80')
+  background-size: cover
+  background-attachment: fixed
+.section
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 400px
+  font-size: 40px
+  font-weight: 600
+  color: #3F5D45
+  text-shadow: 5px 5px 15px rgba(#3F5D45,.3)
+.productArea
+  padding: 20px
+  background-color: #fff
 .product
   display: flex
   justify-content: space-around

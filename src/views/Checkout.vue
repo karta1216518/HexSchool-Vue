@@ -15,6 +15,9 @@ export default {
   components: {
     CheckoutForm,
     CheckoutSummary
+  },
+  created() {
+    this.$store.dispatch("GET_CARTLIST");
   }
 };
 </script>

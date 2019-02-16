@@ -6,17 +6,20 @@
       integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
       crossorigin="anonymous"
     >
-    
+
+    <a
+      href="https://github.com/karta1216518/HexSchool-Vue"
+      target="_block"
+    >
+      <i class="fab fa-github"></i>
+    </a>
     <a href="#">
       <i class="fab fa-facebook-f"></i>
     </a>
     <a href="#">
       <i class="fab fa-google"></i>
     </a>
-    
-    <a href="#">
-      <i class="fab fa-instagram"></i>
-    </a>
+
     <a href="#">
       <i class="fab fa-youtube"></i>
     </a>

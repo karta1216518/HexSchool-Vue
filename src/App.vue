@@ -24,11 +24,6 @@
 import NavBar from "@/components/NavBar/NavBar.vue";
 import Footer from "@/components/Footer/Footer.vue";
 import Loading from "@/components/Loading/Loading.vue";
-import { mapActions } from "vuex";
-import { mapState } from "vuex";
-
-// import { mapMutations } from "vuex";
-// import { mapActions } from "vuex";
 
 export default {
   name: "app",
@@ -75,10 +70,10 @@ body,html
   scroll-behavior: smooth
   overflow-y: overlay
 body
-  margin: 0 
-  margin-right: 8px
+  padding: 0 !important
+  margin: 0
 #app
-  padding-right: calc(100vw - 100%)
+  // padding-right: calc(100vw - 100%) 
   position: relative
 ul
   padding: 0
@@ -88,6 +83,8 @@ li
   list-style: none
 a
   text-decoration: none
-  &:visited
+  &:visited,&:link
     color: $cPri
+.imageWall:last-child
+  margin-bottom: 0 !important
 </style>

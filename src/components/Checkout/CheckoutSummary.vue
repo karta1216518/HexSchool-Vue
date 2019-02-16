@@ -30,10 +30,13 @@
         </span>
       </label>
       <div class="toggleSummaryArea">
-        <template v-for="item in 3">
+        <template v-for="item in statisticsList">
           <CheckoutItem
-            :count="item"
-            :key="item"
+            :count="item.qty"
+            :name="item.product.title"
+            :price="item.total"
+            :imgUrl="item.product.image"
+            :key="item.product_id"
           />
         </template>
       </div>
@@ -71,11 +74,11 @@
         <div class="container">
           <div class="summaryItem">
             小計
-            <span class="summaryItemNum">NT$ 3,000</span>
+            <span class="summaryItemNum">{{`NT$${totalPrice}`}}</span>
           </div>
           <div class="summaryItem">
             活動折扣
-            <span class="summaryItemNum discount">NT$ 300</span>
+            <span class="summaryItemNum discount">{{`NT$${totalPrice-finalTotalPrice}`}}</span>
           </div>
           <div class="summaryItem">
             運費
@@ -83,7 +86,7 @@
           </div>
           <div class="summaryItem summaryTotal">
             總計
-            <span class="summaryItemNum">NT$ 2,700</span>
+            <span class="summaryItemNum">{{`NT$${finalTotalPrice}`}}</span>
           </div>
         </div>
       </div>
@@ -101,7 +104,26 @@ export default {
   },
   data() {
     return {};
-  }
+  },
+  computed: {
+    cartList() {
+      return this.$store.state.cartList;
+    },
+    statisticsList() {
+      return this.$store.getters.statisticsList;
+    },
+    totalPrice() {
+      return this.cartList.reduce((total, item) => {
+        return (total += item.total);
+      }, 0);
+    },
+    finalTotalPrice() {
+      return this.cartList.reduce((total, item) => {
+        return (total += item.final_total);
+      }, 0);
+    }
+  },
+  created() {}
 };
 </script>
 

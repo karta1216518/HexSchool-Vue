@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Product from './views/Product.vue'
+import ProductDetailPage from './views/ProductDetailPage.vue'
 import Cart from './views/Cart.vue'
 import Login from './views/Login.vue'
 import Checkout from './views/Checkout.vue'
@@ -57,7 +58,14 @@ export default new Router({
       path: '/product',
       name: 'product',
       component: Product
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/productDetailPage/:id',
+      name: 'productDetailPage',
+      component: ProductDetailPage
+      // beforeEnter: (to, from, next) => {
+
+      // }
     },
     {
       path: '/orderCheck',

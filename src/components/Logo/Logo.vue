@@ -42,7 +42,7 @@ export default {
 <style scoped lang="sass">
 @import "@/assets/sass/global.sass"
 $logoText: #3F5D45
-$logoBG: #fff
+$logoBG: $cNavBar
 $logoShadow: #3F5D45
 
 
