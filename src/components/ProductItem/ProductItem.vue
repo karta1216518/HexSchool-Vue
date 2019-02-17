@@ -76,8 +76,12 @@ export default {
     +center()
     max-width: 300px
     overflow: hidden
+    &:hover
+      img
+        width: 110%
     img
       width: 100%
+      transition: .3s
   .productInf
     display: flex
     justify-content: space-around

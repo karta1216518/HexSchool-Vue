@@ -33,6 +33,7 @@
               @click="qty++"
             >+</div>
           </div>
+          <div class="price">{{'小計NT$'+item.price*qty}}</div>
           <div
             class="addToCart"
             @click="addToCart"

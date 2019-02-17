@@ -1,9 +1,5 @@
 <template>
   <div class="logo">
-    <link
-      href="https://fonts.googleapis.com/css?family=Cinzel"
-      rel="stylesheet"
-    >
     <div class="stage">
       <div class="wrapper">
         <div class="slash"></div>
@@ -138,13 +134,13 @@ $logoShadow: #3F5D45
     animation: side-left linear 10s infinite
   
 .text
+  +font()
   position: relative
   top: 50%
   transform: translateY(-50%)
   white-space: nowrap
-  font-family: 'Cinzel', serif
   margin: 0 15px 
-  letter-spacing: 2px
+  letter-spacing: 3px
   color: $logoText
   font-size: $fontSize
   text-transform: uppercase

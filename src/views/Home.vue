@@ -13,7 +13,7 @@
         </template>
       </div>
     </div>
-    <div class="section">關於本站</div>
+    <div class="section">關於Karta</div>
     <template v-for="(item,index) in wallContent">
       <ImageWall
         :item="item"
@@ -76,8 +76,13 @@ export default {
   height: 400px
   font-size: 40px
   font-weight: 600
+  letter-spacing: 10px
   color: #3F5D45
   text-shadow: 5px 5px 15px rgba(#3F5D45,.3)
+  background-attachment: fixed
+  background-image: url('https://images.unsplash.com/photo-1534944845791-f9e35a201bf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')
+  background-size: cover
+  background-position: center
 .productArea
   padding: 20px
   background-color: #fff

@@ -34,7 +34,7 @@
       <div class="container">
         <div class="footerLinkbar">
           <router-link :to="{name: 'home'}">
-            <Logo />
+            <div class="backstage">前往後臺</div>
           </router-link>
           <HoverIcon />
         </div>
@@ -109,6 +109,14 @@ export default {
       outline: none
       cursor: pointer
       +hover()
+.backstage
+  +size(200px,60px)
+  +font()
+  +center()
+  font-size: $fontSize
+  font-weight: 500
+  letter-spacing: 8px
+  border: 1px solid $cPri
 .footerInfArea
   .container
     max-width: 800px

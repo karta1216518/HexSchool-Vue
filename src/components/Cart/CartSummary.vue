@@ -57,6 +57,8 @@ export default {
   background-color: $cPri
   color: #fff
   height: 100%
+  position: sticky !important
+  top: 20px
   .container
     max-width: 440px
     margin: 0 auto

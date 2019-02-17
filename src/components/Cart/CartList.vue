@@ -146,6 +146,7 @@ export default {
 @import "@/assets/sass/global.sass"
 .cartList
   width: 100%
+  margin-left: 20px
 .title
   background: $cLite
   color: $cPri
@@ -203,6 +204,10 @@ export default {
 @media only screen and (max-width: $rwdL)
   .cartInf,.cartCount
     flex-direction: column
+@media only screen and (max-width: $rwdM)
+  .cartList
+    margin-left: 0px
+
 @media only screen and (max-width: $rwdS)
   .container
     padding: 20px

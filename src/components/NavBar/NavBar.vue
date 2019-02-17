@@ -126,4 +126,7 @@ a
       text-align: center
       &:hover
         background: $cSelect
+@media only screen and (max-width: $rwdS)
+  .hamburger
+    margin-left: 0
 </style>

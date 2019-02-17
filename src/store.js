@@ -41,8 +41,10 @@ export default new Vuex.Store({
         }
         idList = []
       })
-      // 回傳完整物件用以v-for
-      return statisticsItem
+      // 轉成陣列回傳並讓其有固定順序，否則操作購物車時會亂跳
+      return (Object.values(statisticsItem)).sort((a, b) => {
+        return a.product.price * 1 - b.product.price * 1
+      })
     }
   },
   mutations: {

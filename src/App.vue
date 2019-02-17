@@ -63,18 +63,29 @@ export default {
 .list-complete-leave-active 
   transform: translate(0px,0px)
 
+body::-webkit-scrollbar-track
+	border-radius: 10px
+	background-color: $cLite
+body::-webkit-scrollbar
+	width: 6px
+	background-color: $cLite
+body::-webkit-scrollbar-thumb
+	border-radius: 10px
+	background-color: rgba($cPri,.3)
+
 
 
 body,html
   +font()
   scroll-behavior: smooth
-  overflow-y: overlay
 body
   padding: 0 !important
   margin: 0
+  overflow-x: hidden
 #app
-  // padding-right: calc(100vw - 100%) 
+  margin-right: calc(100% - 100vw) 
   position: relative
+  box-sizing: border-box
 ul
   padding: 0
   margin: 0

@@ -54,6 +54,7 @@ export default {
   background-image: url('../../assets/img/login.jpg')
   background-size: cover
   background-position: center
+  background-attachment: fixed
   +center()
   .login
     +size(100%,500px)
