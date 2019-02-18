@@ -19,33 +19,49 @@
         class="paymentType deliveryHandler"
       />
       <div class="row">
-        <label class="paymentSelect onlinePayment" for="Online">線上付款</label>
-        <label class="paymentSelect deliveryPayment" for="delivery"
-          >貨到付款</label
-        >
+        <label
+          class="paymentSelect onlinePayment"
+          for="Online"
+        >線上付款</label>
+        <label
+          class="paymentSelect deliveryPayment"
+          for="delivery"
+        >貨到付款</label>
       </div>
       <div class="onlineArea">
         <div class="row">
           <div class="fromItem">
             <label for="cardNumber">信用卡卡號</label>
-            <input type="text" id="cardNumber" />
+            <input
+              type="text"
+              id="cardNumber"
+            />
           </div>
         </div>
         <div class="row">
           <div class="fromItem">
             <label for="lastName">持卡人姓氏</label>
-            <input type="text" id="lastName" />
+            <input
+              type="text"
+              id="lastName"
+            />
           </div>
           <div class="space"></div>
           <div class="fromItem">
             <label for="fristName">名字</label>
-            <input type="text" id="fristName" />
+            <input
+              type="text"
+              id="fristName"
+            />
           </div>
         </div>
         <div class="row">
           <div class="fromItem">
             <label for="numCVC">背面末三碼</label>
-            <input type="text" id="numCVC" />
+            <input
+              type="text"
+              id="numCVC"
+            />
           </div>
         </div>
       </div>
@@ -66,18 +82,27 @@
 
 <script>
 export default {
-  name: 'payment',
+  name: "payment",
   data() {
     return {
-      paymentType: 'Online'
-    }
+      paymentType: "Online",
+      paymentData: {
+        paymentType: "",
+        cardId: "",
+        cardHolder: {
+          fristName: "",
+          lastName: ""
+        },
+        CVC: ""
+      }
+    };
   },
   methods: {
     submit() {
-      this.$router.push({ path: 'orderCheck' })
+      this.$router.push({ path: "orderCheck" });
     }
   }
-}
+};
 </script>
 
 <style lang="sass" src="@/assets/sass/fromPage.sass"></style>

@@ -147,7 +147,6 @@ export default {
   transition: .5s
 .checkoutSummary
   min-width: 300px
-  max-width: 540px
   width: 100%
   .title
     height: 60px

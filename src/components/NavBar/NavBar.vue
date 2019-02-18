@@ -17,8 +17,12 @@
           type="checkbox"
           id="hamburgerHandler"
           class="hamburgerHandler"
+          v-model="hamburgerOpen"
         />
-        <div class="hamburgerList">
+        <div
+          class="hamburgerList"
+          @click="hamburgerOpen=false"
+        >
           <router-link :to="{ name: 'home' }">首頁</router-link>
           <router-link :to="{ name: 'product' }">商品</router-link>
           <router-link :to="{ name: 'login' }">登入</router-link>
@@ -54,7 +58,7 @@ import Logo from "@/components/Logo/Logo.vue";
 export default {
   name: "NavBar",
   data() {
-    return {};
+    return { hamburgerOpen: false };
   },
   components: { Logo }
 };

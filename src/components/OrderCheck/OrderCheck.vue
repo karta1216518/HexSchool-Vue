@@ -1,33 +1,6 @@
 <template>
   <div class="orderCheck">
-    <div class="orderArea">
-      <div class="title">
-        您的訂單
-      </div>
-      <ul class="orderList">
-
-        <li class="orderItem">
-          <div class="imgSpace">產品圖片</div>
-          <div class="container">
-            <div class="name">品名</div>
-            <div class="count">數量</div>
-          </div>
-          <div class="price">價錢</div>
-        </li>
-        <li
-          class="orderItem"
-          v-for="item in 3"
-          :key="item"
-        >
-          <img src="https://fakeimg.pl/110x110/" />
-          <div class="container">
-            <div class="name">焦糖馬卡龍</div>
-            <div class="count">{{ item }}</div>
-          </div>
-          <div class="price">NT$ 900</div>
-        </li>
-      </ul>
-    </div>
+    <CheckoutSummary />
     <div class="informationArea">
       <div class="title">訂購人資訊</div>
       <table>
@@ -116,12 +89,25 @@
 </template>
 
 <script>
+import CheckoutSummary from "@/components/Checkout/CheckoutSummary.vue";
+
 export default {
   name: "orderCheck",
+  components: {
+    CheckoutSummary
+  },
   data() {
     return {
       invoice: "inbox"
     };
+  },
+  computed: {
+    cartList() {
+      return this.$store.getters.statisticsList;
+    }
+  },
+  created() {
+    this.$store.dispatch("GET_CARTLIST");
   }
 };
 </script>
@@ -131,36 +117,21 @@ export default {
 .orderCheck
   max-width: 800px
   margin: 40px auto
+  padding: 0 20px
 .title
   background-color: $cLite
   font-size: 1.2*$fontSize
   font-weight: 600
   +size(100%,60px)
   +center()
-.orderList
-  .orderItem
-    display: flex
-    padding: 10px 0
-    border-bottom: 1px solid $cLite
-    .imgSpace
-      min-width: 110px
-      text-align: center
-    >.container
-      display: flex
-      width: 100%
-      justify-content: space-around
-      align-items: center
-    .price
-      min-width: 200px 
-      font-size: $fontSize
-      font-weight: 600
-      +center()
+
 .informationArea
+  padding: 0 10px
   table
     max-width: 540px
     margin: 20px auto
     .tableHead
-      width: 160px
+      min-width: 120px
     td 
       padding: 8px
       > label
