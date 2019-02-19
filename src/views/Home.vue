@@ -73,7 +73,7 @@ export default {
   display: flex
   justify-content: center
   align-items: center
-  height: 400px
+  height: 560px
   font-size: 40px
   font-weight: 600
   letter-spacing: 10px

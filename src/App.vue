@@ -12,7 +12,7 @@
       name="fade"
       mode="out-in"
     >
-      <keep-alive>
+      <keep-alive exclude="checkout">
         <router-view />
       </keep-alive>
     </transition>

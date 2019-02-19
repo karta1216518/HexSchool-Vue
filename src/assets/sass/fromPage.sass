@@ -4,6 +4,7 @@
   font-size: $fontSize
   font-weight: 600
   background-color: $cSelect
+  color: #000
   border: none
   outline: none
   position: relative
@@ -38,12 +39,14 @@
     width: 4px
   .fromItem
     min-width: 120px
+    min-height: 100px
     flex: 1
     > input[type="text"],select
       border: none
       box-sizing: border-box
       font-size: $fontSize
       outline: none
+      transition: .3s
       +font()
       +size(100%,40px)    
     > input[type="text"]
@@ -104,6 +107,7 @@
       +size(20px)
   .deleteBtn
     &:hover
+      cursor: pointer
       transform: scale(1.1)
     >.icon
       +size(20px)
@@ -134,3 +138,21 @@
 .onlineArea,
 .deliveryArea
   display: none
+
+
+// vee
+.is-danger
+  border: 4px solid $cDanger !important
+.dangerText
+  color: $cDanger
+  position: relative
+  animation: dangerText .3s linear
+@keyframes dangerText
+  0%
+    left: 0
+  25%
+    left: 4px
+  75%
+    left: -4px
+  100%
+    left: 0

@@ -36,21 +36,25 @@ export default new Router({
     {
       path: '/checkout',
       component: Checkout,
+
       children: [
         {
           path: '',
           name: 'checkout',
           component: Personal
+
         },
         {
           path: '/transport',
           name: 'transport',
           component: Transport
+
         },
         {
           path: '/payment',
           name: 'payment',
           component: Payment
+
         }
       ]
     },

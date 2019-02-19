@@ -29,7 +29,7 @@ export default {
   background-size: cover
   background-position: bottom
   +center()
-  +size(100%,500px)
+  +size(100%,calc(100vh - 80px))
   .content
     +center()
     +size(600px,300px)

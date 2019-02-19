@@ -12,9 +12,19 @@
         <div class="fromItem">
           <label for="lastName">姓氏</label>
           <input
+            v-model="personalData.lastName"
+            v-validate="'required'"
+            :class="{'is-danger': errors.has('lastName') }"
+            placeholder="姓氏．．．"
             type="text"
+            name="lastName"
             id="lastName"
           >
+          <span
+            v-show="errors.has('lastName')"
+            class="dangerText"
+            v-cloak
+          > {{ errors.first('lastName') }} </span>
         </div>
         <div class="space"></div>
         <div class="fromItem">
@@ -22,7 +32,17 @@
           <input
             type="text"
             id="fristName"
+            v-model="personalData.fristName"
+            v-validate="'required'"
+            :class="{'is-danger': errors.has('fristName') }"
+            placeholder="名字．．．"
+            name="fristName"
           >
+          <span
+            v-show="errors.has('fristName')"
+            class="dangerText"
+            v-cloak
+          > {{ errors.first('fristName') }} </span>
         </div>
       </div>
       <div class="row">
@@ -31,7 +51,17 @@
           <input
             type="text"
             id="phone"
+            v-model="personalData.phone"
+            v-validate="'required'"
+            :class="{'is-danger': errors.has('phone') }"
+            placeholder="電話．．．"
+            name="phone"
           >
+          <span
+            v-show="errors.has('phone')"
+            class="dangerText"
+            v-cloak
+          > {{ errors.first('phone') }} </span>
         </div>
       </div>
       <div class="row">
@@ -40,16 +70,25 @@
           <input
             type="text"
             id="address"
+            v-model="personalData.address"
+            v-validate="'required'"
+            :class="{'is-danger': errors.has('address') }"
+            placeholder="地址 . . . "
+            name="address"
           >
+          <span
+            v-show="errors.has('address')"
+            class="dangerText"
+            v-cloak
+          > {{ errors.first('address') }} </span>
         </div>
       </div>
     </div>
-    <input
-      type="submit"
-      value="下一步"
+    <div
       class="submitBtn"
       @click.prevent="submit"
-    >
+    >下一步
+    </div>
   </div>
 </template>
 
@@ -69,9 +108,22 @@ export default {
   },
   methods: {
     submit() {
-      this.$router.push({ path: "transport" });
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          //成功操作
+          this.$router.push({ name: "transport" });
+        } else {
+          // 失败操作
+          return;
+        }
+      });
     }
   }
+  // created() {
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     console.log(position.coords.latitude, position.coords.longitude);
+  //   });
+  // }
 };
 </script>
 

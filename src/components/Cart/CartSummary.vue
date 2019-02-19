@@ -18,7 +18,7 @@
       </div>
     </div>
     <router-link
-      to="/checkout"
+      :to="{name: 'checkout'}"
       class="checkout"
     >結帳</router-link>
   </div>
