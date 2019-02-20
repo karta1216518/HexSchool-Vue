@@ -15,7 +15,7 @@ import CompleteOrder from '@/components/CompleteOrder/CompleteOrder.vue'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -36,25 +36,38 @@ export default new Router({
     {
       path: '/checkout',
       component: Checkout,
-
       children: [
         {
           path: '',
           name: 'checkout',
-          component: Personal
-
+          component: Personal,
+          meta: { requiresAuth: true }
         },
         {
           path: '/transport',
           name: 'transport',
-          component: Transport
-
+          component: Transport,
+          meta: { requiresAuth: true },
+          beforeEnter: (to, from, next) => {
+            if (from.name === 'checkout') {
+              next()
+            } else {
+              next({ name: 'home' })
+            }
+          }
         },
         {
           path: '/payment',
           name: 'payment',
-          component: Payment
-
+          component: Payment,
+          meta: { requiresAuth: true },
+          beforeEnter: (to, from, next) => {
+            if (from.name === 'transport') {
+              next()
+            } else {
+              next({ name: 'home' })
+            }
+          }
         }
       ]
     },
@@ -67,19 +80,30 @@ export default new Router({
       path: '/productDetailPage/:id',
       name: 'productDetailPage',
       component: ProductDetailPage
-      // beforeEnter: (to, from, next) => {
-
-      // }
     },
     {
       path: '/orderCheck',
       name: 'orderCheck',
-      component: OrderCheck
+      component: OrderCheck,
+      beforeEnter: (to, from, next) => {
+        if (from.name === 'payment') {
+          next()
+        } else {
+          next({ name: 'home' })
+        }
+      }
     },
     {
       path: '/completeOrder',
       name: 'completeOrder',
-      component: CompleteOrder
+      component: CompleteOrder,
+      beforeEnter: (to, from, next) => {
+        if (from.name === 'orderCheck') {
+          next()
+        } else {
+          next({ name: 'home' })
+        }
+      }
     },
     {
       path: '*',

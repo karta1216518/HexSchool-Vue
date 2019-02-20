@@ -72,128 +72,128 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       bannerStatus: {
         active: 3,
-        interval: "",
+        interval: '',
         working: true,
         screenWidth: 1200
       },
       bannerItem: [
         {
-          bgUrl: require("@/assets/img/banner1.jpg"),
-          rwdUrl: require("@/assets/img/s_banner1.jpg"),
-          logoUrl: require("@/assets/img/logo1.png"),
-          text1: "Vue-Cli",
-          text2: "建置大型環境",
+          bgUrl: require('@/assets/img/banner1.jpg'),
+          rwdUrl: require('@/assets/img/s_banner1.jpg'),
+          logoUrl: require('@/assets/img/logo1.png'),
+          text1: 'Vue-Cli',
+          text2: '建置大型環境',
           moveDiretive: false,
-          btnText: ""
+          btnText: ''
         },
         {
-          bgUrl: require("@/assets/img/banner2.jpg"),
-          rwdUrl: require("@/assets/img/s_banner2.jpg"),
-          logoUrl: require("@/assets/img/logo2.png"),
-          text1: "使用Vuex",
-          text2: "集中管理數據",
+          bgUrl: require('@/assets/img/banner2.jpg'),
+          rwdUrl: require('@/assets/img/s_banner2.jpg'),
+          logoUrl: require('@/assets/img/logo2.png'),
+          text1: '使用Vuex',
+          text2: '集中管理數據',
           moveDiretive: true,
-          btnText: "了解更多"
+          btnText: '了解更多'
         },
         {
-          bgUrl: require("@/assets/img/banner3.jpg"),
-          rwdUrl: require("@/assets/img/s_banner3.jpg"),
-          logoUrl: require("@/assets/img/logo3.png"),
-          text1: "Sass手刻RWD",
-          text2: "Animation動畫效果",
+          bgUrl: require('@/assets/img/banner3.jpg'),
+          rwdUrl: require('@/assets/img/s_banner3.jpg'),
+          logoUrl: require('@/assets/img/logo3.png'),
+          text1: 'Sass手刻RWD',
+          text2: 'Animation動畫效果',
           moveDiretive: false,
-          btnText: ""
+          btnText: ''
         },
         {
-          bgUrl: require("@/assets/img/banner4.jpg"),
-          rwdUrl: require("@/assets/img/s_banner4.jpg"),
-          logoUrl: require("@/assets/img/logo4.png"),
-          text1: "Vue-router",
-          text2: "SPA瀏覽體驗",
+          bgUrl: require('@/assets/img/banner4.jpg'),
+          rwdUrl: require('@/assets/img/s_banner4.jpg'),
+          logoUrl: require('@/assets/img/logo4.png'),
+          text1: 'Vue-router',
+          text2: 'SPA瀏覽體驗',
           moveDiretive: true,
-          btnText: ""
+          btnText: ''
         }
       ]
-    };
+    }
   },
   computed: {
-    slideIn() {
+    slideIn () {
       return this.bannerStatus.active + 1 == 4
         ? 0
-        : this.bannerStatus.active + 1;
+        : this.bannerStatus.active + 1
     },
-    imgUrl() {
-      let screen = this.bannerStatus.screenWidth;
-      let url;
+    imgUrl () {
+      let screen = this.bannerStatus.screenWidth
+      let url
       if (+screen >= 768) {
         url = this.bannerItem.map(x => {
-          return x.bgUrl;
-        });
+          return x.bgUrl
+        })
       } else {
         url = this.bannerItem.map(x => {
-          return x.rwdUrl;
-        });
+          return x.rwdUrl
+        })
       }
-      return url;
+      return url
     }
   },
   methods: {
-    change() {
+    change () {
       this.bannerStatus.active < this.bannerItem.length - 1
         ? this.bannerStatus.active++
-        : (this.bannerStatus.active = 0);
+        : (this.bannerStatus.active = 0)
     },
-    changePagination(d) {
+    changePagination (d) {
       if (this.bannerStatus.active + d === -1) {
-        this.bannerStatus.active = this.bannerItem.length - 1;
+        this.bannerStatus.active = this.bannerItem.length - 1
       } else if (this.bannerStatus.active + d === this.bannerItem.length) {
-        this.bannerStatus.active = 0;
+        this.bannerStatus.active = 0
       } else {
-        this.bannerStatus.active += d;
+        this.bannerStatus.active += d
       }
-      this.stopWorking();
+      this.stopWorking()
     },
-    moveTo(p) {
-      this.bannerStatus.active = p;
-      this.stopWorking();
+    moveTo (p) {
+      this.bannerStatus.active = p
+      this.stopWorking()
     },
-    stopWorking() {
-      if (this.bannerStatus.interval) clearInterval(this.bannerStatus.interval);
-      this.bannerStatus.working = false;
+    stopWorking () {
+      if (this.bannerStatus.interval) clearInterval(this.bannerStatus.interval)
+      this.bannerStatus.working = false
     },
-    startWorking() {
+    startWorking () {
       // init
-      this.stopWorking();
-      let vm = this;
+      this.stopWorking()
+      let vm = this
       this.bannerStatus.interval = setInterval(() => {
-        vm.change();
-      }, 5000);
-      this.bannerStatus.working = true;
+        vm.change()
+      }, 5000)
+      this.bannerStatus.working = true
     }
   },
-  created() {
-    this.bannerStatus.screenWidth = window.innerWidth;
+  created () {
+    this.bannerStatus.screenWidth = window.innerWidth
   },
-  mounted() {
-    let vm = this;
+  mounted () {
+    let vm = this
     setTimeout(() => {
-      vm.change(), 1;
-    });
-    vm.startWorking();
+      vm.change(), 1
+    })
+    vm.startWorking()
     window.onresize = () => {
-      vm.bannerStatus.screenWidth = window.innerWidth;
-    };
+      vm.bannerStatus.screenWidth = window.innerWidth
+    }
   },
   watch: {
-    screenWidth(val) {
-      this.bannerStatus.screenWidth = val;
+    screenWidth (val) {
+      this.bannerStatus.screenWidth = val
     }
   }
-};
+}
 </script>
 
 <style lang="sass" scoped>
@@ -204,8 +204,8 @@ export default {
 		transition: 1s cubic-bezier(0.03, 0.85, 0.6, 1)
 		transition-delay: $d
 		position: relative
-    
-.container    
+
+.container
   max-width: 1200px
   height: 100%
   margin: 0 auto

@@ -16,12 +16,12 @@
 
 <script>
 export default {
-  name: "checkoutItem",
-  props: ["count", "name", "price", "imgUrl"],
-  data() {
-    return {};
+  name: 'checkoutItem',
+  props: ['count', 'name', 'price', 'imgUrl'],
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

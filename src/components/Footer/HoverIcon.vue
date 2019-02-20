@@ -27,7 +27,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="sass" scoped>
@@ -51,7 +51,7 @@ export default {};
 		overflow: hidden
 		position: relative
 		> i
-			font-size: 26px	
+			font-size: 26px
 			transition: 0.2s linear
 	a:hover i
 		transform: scale(1.3)

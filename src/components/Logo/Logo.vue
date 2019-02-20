@@ -26,13 +26,13 @@
 
 <script>
 export default {
-  name: "logo",
-  data() {
+  name: 'logo',
+  data () {
     return {
       title: "Karta's file"
-    };
+    }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">
@@ -41,13 +41,11 @@ $logoText: #3F5D45
 $logoBG: $cNavBar
 $logoShadow: #3F5D45
 
-
-
 *:before, *:after
   box-sizing: border-box
   font-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
-  
+
 .stage
   +size(100%,60px)
   +center()
@@ -66,7 +64,7 @@ $logoShadow: #3F5D45
   background: $logoText
   z-index: 4
   animation: slash 10s ease-in infinite
-  
+
   &:before
     content: ''
     display: block
@@ -78,7 +76,7 @@ $logoShadow: #3F5D45
     height: 120%
     background: $logoBG
     z-index: -1
-    
+
   &:after
     content: ''
     display: block
@@ -88,7 +86,7 @@ $logoShadow: #3F5D45
     width: 100%
     height: 100%
     background: $logoText
-  
+
 .sides
   position: absolute
   width: 100%
@@ -96,11 +94,11 @@ $logoShadow: #3F5D45
   top: 0
   left: 0
   overflow: hidden
-  
+
   .side
     position: absolute
     background: $logoText
-  
+
   .side:nth-child(1)
     top: 0
     left: 0
@@ -108,7 +106,7 @@ $logoShadow: #3F5D45
     height: 0.15rem
     transform: translateX(-101%)
     animation: side-top linear 10s infinite
-  
+
   .side:nth-child(2)
     top: 0
     right: 0
@@ -116,7 +114,7 @@ $logoShadow: #3F5D45
     height: 100%
     transform: translateY(-101%)
     animation: side-right linear 10s infinite
-  
+
   .side:nth-child(3)
     left: 0
     bottom: 0
@@ -124,7 +122,7 @@ $logoShadow: #3F5D45
     height: 0.15rem
     transform: translateX(101%)
     animation: side-bottom linear 10s infinite
-  
+
   .side:nth-child(4)
     top: 0
     left: 0
@@ -132,14 +130,14 @@ $logoShadow: #3F5D45
     height: 100%
     transform: translateY(101%)
     animation: side-left linear 10s infinite
-  
+
 .text
   +font()
   position: relative
   top: 50%
   transform: translateY(-50%)
   white-space: nowrap
-  margin: 0 15px 
+  margin: 0 15px
   letter-spacing: 3px
   color: $logoText
   font-size: $fontSize
@@ -147,7 +145,7 @@ $logoShadow: #3F5D45
 
 .textBacking
   opacity: 0
-  
+
 .textLeftMove
   position: absolute
   top: 0
@@ -162,7 +160,7 @@ $logoShadow: #3F5D45
   top: 0
   right: 0
   overflow: hidden
-  +size(50%,100%)  
+  +size(50%,100%)
   .inner
     transform: translateX(-200%)
     animation: text-move-re 10s ease-in-out infinite
@@ -178,7 +176,7 @@ $logoShadow: #3F5D45
     transform: translate(-50%, -50%) rotate(-24deg) scaleY(0)
   100%
     transform: translate(-50%, -50%) rotate(-24deg) scaleY(0)
-    
+
 @keyframes text-move
   5%
     transform: translateX(100%)

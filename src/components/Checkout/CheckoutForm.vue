@@ -13,17 +13,17 @@
 </template>
 
 <script>
-import ProgressBar from "@/components/Checkout/FormPage/ProgressBar.vue";
+import ProgressBar from '@/components/Checkout/FormPage/ProgressBar.vue'
 export default {
-  name: "CheckoutFrom",
-  data() {
-    return {};
+  name: 'CheckoutFrom',
+  data () {
+    return {}
   },
   components: {
     ProgressBar
   },
-  created() {}
-};
+  created () {}
+}
 </script>
 
 <style scoped lang="sass">

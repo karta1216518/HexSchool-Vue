@@ -38,11 +38,11 @@
 
 <script>
 export default {
-  name: "login",
-  data() {
-    return {};
+  name: 'login',
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <style scoped lang="sass">
@@ -63,7 +63,7 @@ export default {
     max-width: 600px
     position: relative
     z-index: 1
-    &:after 
+    &:after
       filter: blur(4px)
       content: ''
       position: absolute

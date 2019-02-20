@@ -18,24 +18,24 @@
 
 <script>
 export default {
-  name: "classMenu",
-  data() {
+  name: 'classMenu',
+  data () {
     return {
-      classType: ["所有產品", "測試分類", "人氣推薦", "新品上市"],
-      nowActive: "所有產品"
-    };
+      classType: ['所有產品', '測試分類', '人氣推薦', '新品上市'],
+      nowActive: '所有產品'
+    }
   },
   methods: {
-    changeClass(item) {
-      this.nowActive = item;
-      this.$emit("changeClass", item);
-      if (this.nowActive != "所有產品") {
-        this.$store.commit("SET_APITYPE", "all");
-        this.$store.dispatch("GET_PRODUCTLIST");
+    changeClass (item) {
+      this.nowActive = item
+      this.$emit('changeClass', item)
+      if (this.nowActive != '所有產品') {
+        this.$store.commit('SET_APITYPE', 'all')
+        this.$store.dispatch('GET_PRODUCTLIST')
       }
     }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

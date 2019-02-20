@@ -26,26 +26,26 @@
 
 <script>
 export default {
-  name: "cartSummary",
-  data() {
-    return {};
+  name: 'cartSummary',
+  data () {
+    return {}
   },
   computed: {
-    cartList() {
-      return this.$store.state.cartList;
+    cartList () {
+      return this.$store.state.cart.cartList
     },
-    totalPrice() {
+    totalPrice () {
       return this.cartList.reduce((total, item) => {
-        return (total += item.total);
-      }, 0);
+        return (total += item.total)
+      }, 0)
     },
-    finalTotalPrice() {
+    finalTotalPrice () {
       return this.cartList.reduce((total, item) => {
-        return (total += item.final_total);
-      }, 0);
+        return (total += item.final_total)
+      }, 0)
     }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">
@@ -85,7 +85,7 @@ export default {
     +hover()
 @media only screen and (max-width: $rwdM)
   .cartSummary
-    margin-top: 20px 
+    margin-top: 20px
     background-color: #fff
     color: #000
     .summaryTitle

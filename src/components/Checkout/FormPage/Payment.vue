@@ -106,7 +106,8 @@
       </form>
       <div class="deliveryArea">
         <div class="note">
-          便利商店取件付款免運費 <br />若選擇宅配貨到付款，運費為$100
+          限時 ! 便利商店取件付款免運費 <br />
+          根據物流情況的不同，商品約3~5天送達
         </div>
       </div>
     </div>
@@ -139,11 +140,17 @@ export default {
       let scope = this.paymentType;
       this.$validator.validateAll(scope).then(result => {
         if (result) {
-          //成功操作
+          // 成功操作
           this.$router.push({ path: "orderCheck" });
+          this.$store.commit("SET_ORDERDATA", {
+            type: "paymentData",
+            data:
+              this.paymentType === "online"
+                ? this.paymentData
+                : { paymentType: "delivery" }
+          });
         } else {
           // 失败操作
-          return;
         }
       });
     }

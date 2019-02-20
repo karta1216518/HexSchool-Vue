@@ -49,36 +49,36 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { mapMutations } from "vuex";
+import { mapActions } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
-  name: "pagination",
-  data() {
+  name: 'pagination',
+  data () {
     return {
       nowActive: 1
-    };
+    }
   },
   methods: {
-    changePage(page) {
-      this.nowActive = page;
-      this.$store.commit("SET_APITYPE", this.nowActive);
-      this.$store.dispatch("GET_PRODUCTLIST");
+    changePage (page) {
+      this.nowActive = page
+      this.$store.commit('SET_APITYPE', this.nowActive)
+      this.$store.dispatch('GET_PRODUCTLIST')
     },
-    movePage(d) {
+    movePage (d) {
       if (this.nowActive + d >= 1 && this.nowActive + d <= this.totalPages) {
-        this.nowActive += d;
-        this.$store.commit("SET_APITYPE", this.nowActive);
-        this.$store.dispatch("GET_PRODUCTLIST");
+        this.nowActive += d
+        this.$store.commit('SET_APITYPE', this.nowActive)
+        this.$store.dispatch('GET_PRODUCTLIST')
       }
     }
   },
   computed: {
-    totalPages() {
-      return this.$store.state.totalPages;
+    totalPages () {
+      return this.$store.state.product.totalPages
     }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

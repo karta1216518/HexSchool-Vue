@@ -52,16 +52,16 @@
 </template>
 
 <script>
-import Logo from "@/components/Logo/Logo.vue";
-import HoverIcon from "@/components/Footer/HoverIcon.vue";
+import Logo from '@/components/Logo/Logo.vue'
+import HoverIcon from '@/components/Footer/HoverIcon.vue'
 
 export default {
-  name: "Footer",
+  name: 'Footer',
   components: { HoverIcon, Logo },
-  data() {
-    return {};
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <style scoped lang="sass">
@@ -90,7 +90,7 @@ export default {
       +center()
     .mailIcon,.sendBtn
       +size(70px,60px)
-      .icon 
+      .icon
         width: .8em
     .inputBox
       width: 100%
@@ -98,7 +98,7 @@ export default {
       border: none
       outline: none
       font-size: $fontSize
-      max-width: 300px  
+      max-width: 300px
       box-sizing: border-box
       background: $cLite
       height: 60px

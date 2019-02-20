@@ -83,6 +83,25 @@
           > {{ errors.first('address') }} </span>
         </div>
       </div>
+      <div class="row">
+        <div class="fromItem">
+          <label for="email">電子信箱</label>
+          <input
+            type="email"
+            id="email"
+            v-model="personalData.email"
+            v-validate="'required'"
+            :class="{'is-danger': errors.has('email') }"
+            placeholder="電子信箱 . . . "
+            name="email"
+          >
+          <span
+            v-show="errors.has('email')"
+            class="dangerText"
+            v-cloak
+          > {{ errors.first('email') }} </span>
+        </div>
+      </div>
     </div>
     <div
       class="submitBtn"
@@ -102,7 +121,8 @@ export default {
         fristName: "",
         lastName: "",
         phone: "",
-        address: ""
+        address: "",
+        email: ""
       }
     };
   },
@@ -110,23 +130,20 @@ export default {
     submit() {
       this.$validator.validateAll().then(result => {
         if (result) {
-          //成功操作
+          // 成功操作
           this.$router.push({ name: "transport" });
+          this.$store.commit("SET_ORDERDATA", {
+            type: "personalData",
+            data: this.personalData
+          });
         } else {
           // 失败操作
-          return;
         }
       });
     }
   }
-  // created() {
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     console.log(position.coords.latitude, position.coords.longitude);
-  //   });
-  // }
 };
 </script>
 
 <style lang="sass" src="@/assets/sass/fromPage.sass">
 </style>
-

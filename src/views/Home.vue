@@ -26,42 +26,42 @@
 
 <script>
 // @ is an alias to /src
-import Banner from "@/components/Banner/Banner.vue";
-import ImageWall from "@/components/ImageWall/ImageWall.vue";
+import Banner from '@/components/Banner/Banner.vue'
+import ImageWall from '@/components/ImageWall/ImageWall.vue'
 
 export default {
-  name: "home",
+  name: 'home',
   components: {
     Banner,
     ImageWall
   },
-  data() {
+  data () {
     return {
       wallContent: [
         {
-          imgUrl: require("@/assets/img/wall1.jpg"),
-          title: "Promise",
-          content: "此條目為介紹 Promise 建構式。"
+          imgUrl: require('@/assets/img/wall1.jpg'),
+          title: 'Promise',
+          content: '此條目為介紹 Promise 建構式。'
         },
         {
-          imgUrl: require("@/assets/img/wall2.jpg"),
-          title: "Promise",
-          content: "此條目為介紹 Promise 建構式。:"
+          imgUrl: require('@/assets/img/wall2.jpg'),
+          title: 'Promise',
+          content: '此條目為介紹 Promise 建構式。:'
         },
         {
-          imgUrl: require("@/assets/img/wall3.jpg"),
-          title: "Promise",
-          content: "此條目為介紹 Promise 建構式。:"
+          imgUrl: require('@/assets/img/wall3.jpg'),
+          title: 'Promise',
+          content: '此條目為介紹 Promise 建構式。:'
         }
       ]
-    };
+    }
   },
   computed: {
-    productList() {
-      return this.$store.state.productList;
+    productList () {
+      return this.$store.state.product.productList
     }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

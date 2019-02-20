@@ -46,27 +46,27 @@
 
 <script>
 export default {
-  name: "productDetail",
-  props: ["item"],
-  data() {
+  name: 'productDetail',
+  props: ['item'],
+  data () {
     return {
       qty: 1
-    };
-  },
-  methods: {
-    addToCart(item) {
-      this.$store
-        .dispatch("SET_CART", { item: this.item, qty: this.qty })
-        .then(() => {
-          this.$message.success("成功加入購物車");
-          this.qty = 1;
-        });
     }
   },
-  activated() {
-    this.qty = 1;
+  methods: {
+    addToCart (item) {
+      this.$store
+        .dispatch('SET_CART', { item: this.item, qty: this.qty })
+        .then(() => {
+          this.$message.success('成功加入購物車')
+          this.qty = 1
+        })
+    }
+  },
+  activated () {
+    this.qty = 1
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

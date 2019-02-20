@@ -7,19 +7,19 @@
 
 <script>
 // @ is an alias to /src
-import CheckoutForm from "@/components/Checkout/CheckoutForm.vue";
-import CheckoutSummary from "@/components/Checkout/CheckoutSummary.vue";
+import CheckoutForm from '@/components/Checkout/CheckoutForm.vue'
+import CheckoutSummary from '@/components/Checkout/CheckoutSummary.vue'
 
 export default {
-  name: "checkout",
+  name: 'checkout',
   components: {
     CheckoutForm,
     CheckoutSummary
   },
-  created() {
-    this.$store.dispatch("GET_CARTLIST");
+  created () {
+    this.$store.dispatch('GET_CARTLIST')
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

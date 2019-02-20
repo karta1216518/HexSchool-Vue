@@ -24,11 +24,11 @@
 
 <script>
 export default {
-  name: "progressBar",
-  data() {
-    return {};
+  name: 'progressBar',
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <style lang="sass" scoped>
@@ -40,11 +40,11 @@ export default {
   max-width: 240px
   width: 100%
   display: flex
-  justify-content: space-around  
+  justify-content: space-around
   align-items: center
   .outCircle
     border: 1px solid #FFF
-    border-radius: 20px 
+    border-radius: 20px
     min-width: 20px
     +size(20px)
     +center()
@@ -57,4 +57,3 @@ export default {
     background-color: #FFF
     width: 100%
 </style>
-

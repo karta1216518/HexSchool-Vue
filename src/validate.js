@@ -37,7 +37,8 @@ var dict = {
       area: '地區',
       selectStore: '商店名稱',
       cardId: '信用卡卡號',
-      numCVC: '末三碼'
+      numCVC: '末三碼',
+      email: '信箱'
     }
   }
 }

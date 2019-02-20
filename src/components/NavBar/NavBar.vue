@@ -53,15 +53,15 @@
 </template>
 
 <script>
-import Logo from "@/components/Logo/Logo.vue";
+import Logo from '@/components/Logo/Logo.vue'
 
 export default {
-  name: "NavBar",
-  data() {
-    return { hamburgerOpen: false };
+  name: 'NavBar',
+  data () {
+    return { hamburgerOpen: false }
   },
   components: { Logo }
-};
+}
 </script>
 
 <style scoped lang="sass">
@@ -93,7 +93,6 @@ a
   font-weight: 600
   +center()
   +hover()
-
 
 .cart
   +size(120px,80px)

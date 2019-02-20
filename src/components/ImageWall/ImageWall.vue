@@ -20,19 +20,19 @@
 
 <script>
 export default {
-  name: "ImageWell",
-  props: ["item", "index"],
-  data() {
-    return {};
+  name: 'ImageWell',
+  props: ['item', 'index'],
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <style scoped lang="sass">
 @import "@/assets/sass/global.sass"
 
 .imageWall
-  height: 460px 
+  height: 460px
   background: $cLite
   margin-bottom: 400px
   .container
@@ -51,7 +51,7 @@ export default {
     padding: 70px
     box-sizing: border-box
     p
-      writing-mode: vertical-lr 
+      writing-mode: vertical-lr
 .imageWallReverse
   flex-direction: row-reverse
 @media only screen and (max-width: $rwdM)
@@ -71,5 +71,5 @@ export default {
         padding: 30px
         max-width: 500px
         p
-          writing-mode: horizontal-tb 
+          writing-mode: horizontal-tb
 </style>

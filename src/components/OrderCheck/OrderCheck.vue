@@ -80,9 +80,10 @@
           </td>
         </tr>
       </table>
-      <router-link :to="{name:'completeOrder'}">
-        <button class="checkBtn">確認資料無誤，送出訂單</button>
-      </router-link>
+      <button
+        class="checkBtn"
+        @click="pushOrder"
+      >確認資料無誤，送出訂單</button>
 
     </div>
   </div>
@@ -104,6 +105,18 @@ export default {
   computed: {
     cartList() {
       return this.$store.getters.statisticsList;
+    },
+    orderData(){
+      return this.$store.getters.orderApiData
+    }
+  },
+  methods: {
+    pushOrder() {
+      this.$store.dispatch("PUSH_ORDERDATA").then(() => {
+        this.$router.push({
+          name: "completeOrder"
+        });
+      });
     }
   },
   created() {
@@ -132,7 +145,7 @@ export default {
     margin: 20px auto
     .tableHead
       min-width: 120px
-    td 
+    td
       padding: 8px
       > label
         margin-right: 20px

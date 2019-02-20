@@ -7,20 +7,20 @@
 
 <script>
 // @ is an alias to /src
-import CartList from "@/components/Cart/CartList.vue";
-import CartSummary from "@/components/Cart/CartSummary.vue";
+import CartList from '@/components/Cart/CartList.vue'
+import CartSummary from '@/components/Cart/CartSummary.vue'
 
 export default {
-  name: "cart",
+  name: 'cart',
   components: {
     CartList,
     CartSummary
   },
 
-  created() {
-    this.$store.dispatch("GET_CARTLIST");
+  created () {
+    this.$store.dispatch('GET_CARTLIST')
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

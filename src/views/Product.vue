@@ -27,41 +27,41 @@
 
 <script>
 // @ is an alias to /src
-import ClassMenu from "@/components/ClassMenu/ClassMenu.vue";
-import Pagination from "@/components/Pagination/Pagination.vue";
-import { mapState } from "vuex";
+import ClassMenu from '@/components/ClassMenu/ClassMenu.vue'
+import Pagination from '@/components/Pagination/Pagination.vue'
+import { mapState } from 'vuex'
 
 export default {
-  name: "product",
+  name: 'product',
   components: {
     ClassMenu,
     Pagination
   },
-  data() {
+  data () {
     return {
-      nowClass: "所有產品"
-    };
+      nowClass: '所有產品'
+    }
   },
   methods: {
-    changeClass(item) {
-      this.nowClass = item;
+    changeClass (item) {
+      this.nowClass = item
     }
   },
   computed: {
-    apiType() {
-      return this.$store.state.apiType;
+    apiType () {
+      return this.$store.state.product.apiType
     },
-    productList() {
-      return this.$store.state.productList;
+    productList () {
+      return this.$store.state.product.productList
     },
-    filterList() {
-      if (this.nowClass === "所有產品") return this.productList;
+    filterList () {
+      if (this.nowClass === '所有產品') return this.productList
       return this.productList.filter(x => {
-        return x.category === this.nowClass;
-      });
+        return x.category === this.nowClass
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

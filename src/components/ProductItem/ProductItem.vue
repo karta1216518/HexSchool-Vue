@@ -28,19 +28,19 @@
 
 <script>
 export default {
-  name: "ProductItem",
-  data() {
-    return {};
+  name: 'ProductItem',
+  data () {
+    return {}
   },
-  props: ["item"],
+  props: ['item'],
   methods: {
-    addToCart(item) {
-      this.$store.dispatch("SET_CART", { item, qty: 1 }).then(() => {
-        this.$message.success("成功加入購物車");
-      });
+    addToCart (item) {
+      this.$store.dispatch('SET_CART', { item, qty: 1 }).then(() => {
+        this.$message.success('成功加入購物車')
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">
@@ -61,9 +61,9 @@ export default {
     left: 20px
     background: $cPri
     color: $cBText
-    writing-mode: vertical-lr 
+    writing-mode: vertical-lr
     letter-spacing: 5px
-    +center()  
+    +center()
   .colletIcon
     +size(60px)
     +center()

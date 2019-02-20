@@ -69,77 +69,77 @@
 <script>
 // import { mapState } from "vuex";
 // import { mapActions } from "vuex";
-import { MessageBox } from "element-ui";
+import { MessageBox } from 'element-ui'
 
 export default {
-  name: "cartList",
-  data() {
-    return {};
+  name: 'cartList',
+  data () {
+    return {}
   },
   computed: {
-    cartList() {
-      return this.$store.state.cartList;
+    cartList () {
+      return this.$store.state.cart.cartList
     },
-    statisticsList() {
-      return this.$store.getters.statisticsList;
+    statisticsList () {
+      return this.$store.getters.statisticsList
     }
   },
   methods: {
-    deleteCartItem(item) {
-      MessageBox.confirm("是否要刪除購物車商品", "提示", {
-        cancelButtonText: "取消",
-        confirmButtonText: "確定",
-        type: "warning"
+    deleteCartItem (item) {
+      MessageBox.confirm('是否要刪除購物車商品', '提示', {
+        cancelButtonText: '取消',
+        confirmButtonText: '確定',
+        type: 'warning'
       })
         .then(() => {
-          this.$store.commit("CHANGE_LOADING", true);
+          this.$store.commit('CHANGE_LOADING', true)
 
           item.id.forEach(x => {
-            this.$store.dispatch("DELETE_CARTITEM", { id: x });
-          });
+            this.$store.dispatch('DELETE_CARTITEM', { id: x })
+          })
 
-          this.$store.commit("CHANGE_LOADING", false);
+          this.$store.commit('CHANGE_LOADING', false)
           this.$message({
-            type: "success",
-            message: "删除成功!"
-          });
+            type: 'success',
+            message: '删除成功!'
+          })
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除"
-          });
-        });
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
     },
     // 因無調整購物車數量對應的API，此部分採取前端自幹
-    changeCart(item, type) {
+    changeCart (item, type) {
       // 判斷動作是否為增加數量，若是則直接增加數量一，再透過computed顯示成同一欄位
       // 若動作為減少數量，則選取cartList中同商品的任意一筆，判斷其數量做刪減動作
-      if (type === "remove") {
+      if (type === 'remove') {
         let changeItem = this.cartList.find(x => {
-          return x.product_id === item.product_id;
-        });
-        console.log(changeItem);
+          return x.product_id === item.product_id
+        })
+        console.log(changeItem)
         if (changeItem.qty > 1) {
-          this.$store.dispatch("DELETE_CARTITEM", changeItem);
+          this.$store.dispatch('DELETE_CARTITEM', changeItem)
           // 因為傳入的item來源是computed後的項目，其id為Array不符合action的傳入參數故要調整
-          this.$store.dispatch("SET_CART", {
+          this.$store.dispatch('SET_CART', {
             item: { id: changeItem.product_id },
             qty: changeItem.qty - 1
-          });
+          })
         } else {
-          this.$store.dispatch("DELETE_CARTITEM", changeItem);
+          this.$store.dispatch('DELETE_CARTITEM', changeItem)
         }
       } else {
         // 同上調整id
-        this.$store.dispatch("SET_CART", {
+        this.$store.dispatch('SET_CART', {
           item: { id: item.product_id },
           qty: 1
-        });
+        })
       }
     }
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

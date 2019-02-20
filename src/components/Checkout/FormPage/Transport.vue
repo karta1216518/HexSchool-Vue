@@ -188,7 +188,7 @@
         <ul class="storeList">
           <li
             class="storeListItem"
-            v-for="(item,index) in convenienceStoreData.shopList"
+            v-for="(item,index) in shopList"
             :key="index"
           >
             <label class="storeListSelect">
@@ -205,7 +205,7 @@
             </label>
             <div
               class="deleteBtn"
-              @click="convenienceStoreData.shopList.splice(index,1)"
+              @click="shopList.splice(index,1)"
             >
               <svg
                 class="icon"
@@ -219,7 +219,7 @@
         <button class="addStore">＋新增門市</button>
         <span
           v-show="
-              errors.has('convenienceStore.selectStore') 
+              errors.has('convenienceStore.selectStore')
             "
           class="dangerText"
           v-cloak
@@ -253,9 +253,9 @@ export default {
       },
       convenienceStoreData: {
         convenienceStoreType: "seven",
-        shopName: "",
-        shopList: ["新埔門市", "板橋門市", "江翠門市", "文化門市"]
-      }
+        shopName: ""
+      },
+      shopList: ["新埔門市", "板橋門市", "江翠門市", "文化門市"]
     };
   },
   methods: {
@@ -264,11 +264,17 @@ export default {
       let scope = this.postType;
       this.$validator.validateAll(scope).then(result => {
         if (result) {
-          //成功操作
+          // 成功操作
           this.$router.push({ path: "payment" });
+          this.$store.commit("SET_ORDERDATA", {
+            type: "postData",
+            data:
+              this.postData === "post"
+                ? this.postData
+                : this.convenienceStoreData
+          });
         } else {
-          // 失败操作
-          return;
+          // 失敗操作
         }
       });
     }

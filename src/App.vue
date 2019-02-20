@@ -21,38 +21,38 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar/NavBar.vue";
-import Footer from "@/components/Footer/Footer.vue";
-import Loading from "@/components/Loading/Loading.vue";
+import NavBar from '@/components/NavBar/NavBar.vue'
+import Footer from '@/components/Footer/Footer.vue'
+import Loading from '@/components/Loading/Loading.vue'
 
 export default {
-  name: "app",
+  name: 'app',
   components: { NavBar, Footer, Loading },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   methods: {},
-  created() {
-    this.$store.dispatch("GET_PRODUCTLIST");
+  created () {
+    this.$store.dispatch('GET_PRODUCTLIST')
   },
   computed: {
-    isShow() {
-      return this.$store.state.loading;
+    isShow () {
+      return this.$store.state.loading
     }
   }
-};
+}
 </script>
 
 <style lang="sass">
 @import "@/assets/sass/global.sass"
-.icon 
+.icon
   width: 1.5em
   height: 1.5em
   vertical-align: -0.15em
   fill: currentColor
   overflow: hidden
 
-.fade-enter-active, .fade-leave-active 
+.fade-enter-active, .fade-leave-active
   transition: opacity .5s
 .fade-enter, .fade-leave-to
   opacity: 0
@@ -60,7 +60,7 @@ export default {
 .list-complete-enter, .list-complete-leave-to
   opacity: 0
   transform: translate(20px,20px)
-.list-complete-leave-active 
+.list-complete-leave-active
   transform: translate(0px,0px)
 
 body::-webkit-scrollbar-track
@@ -71,9 +71,7 @@ body::-webkit-scrollbar
 	background-color: $cLite
 body::-webkit-scrollbar-thumb
 	border-radius: 10px
-	background-color: rgba($cPri,.3)
-
-
+  background-color: rgba($cPri,.3)
 
 body,html
   +font()
@@ -83,7 +81,7 @@ body
   margin: 0
   overflow-x: hidden
 #app
-  margin-right: calc(100% - 100vw) 
+  margin-right: calc(100% - 100vw)
   position: relative
   box-sizing: border-box
 ul

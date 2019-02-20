@@ -95,36 +95,36 @@
 </template>
 
 <script>
-import CheckoutItem from "@/components/Checkout/CheckoutItem.vue";
+import CheckoutItem from '@/components/Checkout/CheckoutItem.vue'
 
 export default {
-  name: "checkoutSummary",
+  name: 'checkoutSummary',
   components: {
     CheckoutItem
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {
-    cartList() {
-      return this.$store.state.cartList;
+    cartList () {
+      return this.$store.state.cart.cartList
     },
-    statisticsList() {
-      return this.$store.getters.statisticsList;
+    statisticsList () {
+      return this.$store.getters.statisticsList
     },
-    totalPrice() {
+    totalPrice () {
       return this.cartList.reduce((total, item) => {
-        return (total += item.total);
-      }, 0);
+        return (total += item.total)
+      }, 0)
     },
-    finalTotalPrice() {
+    finalTotalPrice () {
       return this.cartList.reduce((total, item) => {
-        return (total += item.final_total);
-      }, 0);
+        return (total += item.final_total)
+      }, 0)
     }
   },
-  created() {}
-};
+  created () {}
+}
 </script>
 
 <style scoped lang="sass">
@@ -151,7 +151,7 @@ export default {
   .title
     height: 60px
     background-color: $cLite
-    margin: 0 10px 
+    margin: 0 10px
     font-size: 1.2*$fontSize
     font-weight: 600
     color: $cPri

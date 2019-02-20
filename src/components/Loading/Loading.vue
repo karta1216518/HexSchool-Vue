@@ -18,11 +18,11 @@
 
 <script>
 export default {
-  name: "loading",
-  data() {
-    return {};
+  name: 'loading',
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <style scoped >

@@ -15,11 +15,11 @@
 
 <script>
 export default {
-  name: "completeOrder",
-  data() {
-    return {};
+  name: 'completeOrder',
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <style scoped lang="sass">

@@ -5,46 +5,43 @@
 </template>
 
 <script>
-import ProductDetail from "@/components/ProductDetail/ProductDetail.vue";
-import { mapState } from "vuex";
-import { mapActions } from "vuex";
-import { mapMutations } from "vuex";
+import ProductDetail from '@/components/ProductDetail/ProductDetail.vue'
 
 export default {
-  name: "productDetailPage",
+  name: 'productDetailPage',
   components: {
     ProductDetail
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {
-    product() {
+    product () {
       return (
-        this.$store.state.productDetail || {
-          category: "",
-          id: "",
-          image: "",
-          is_enabled: "",
-          origin_price: "",
-          price: "",
-          title: "",
-          unit: ""
+        this.$store.state.product.productDetail || {
+          category: '',
+          id: '',
+          image: '',
+          is_enabled: '',
+          origin_price: '',
+          price: '',
+          title: '',
+          unit: ''
         }
-      );
+      )
     }
   },
   // activated在組件第一次渲染時會被調用，之後在每次緩存組件被激活時調用
-  activated() {
-    this.$store.commit("SET_DATA", {});
-    this.$store.dispatch("GET_PRODUCT", this.$route.params.id);
-    console.log("component activated");
+  activated () {
+    this.$store.commit('SET_DATA', {})
+    this.$store.dispatch('GET_PRODUCT', this.$route.params.id)
+    console.log('component activated')
   },
   // deactivated：組件被停用（離開路由）時調用
-  deactivated() {
-    console.log("component deactivated");
+  deactivated () {
+    console.log('component deactivated')
   }
-};
+}
 </script>
 
 <style scoped lang="sass">
